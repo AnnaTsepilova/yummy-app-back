@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.9.1",
+    "jsonwebtoken": "^9.0.0",
+    "lint": "^0.8.19",
+    "mongoose": "^6.9.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node ./server.js",
+    "dev": "cross-env NODE_ENV=development nodemon ./server.js",
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint --fix **/*.js"
+  },
+  "name": "yummy-app-back",
+  "version": "1.0.0",
+  "description": "final draft",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnaTsepilova/yummy-app-back.git"
+  },
+  "keywords": [
+    "backend",
+    "yummy"
+  ],
+  "author": "Dreaming-team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnaTsepilova/yummy-app-back/issues"
+  },
+  "homepage": "https://github.com/AnnaTsepilova/yummy-app-back#readme"
+}
