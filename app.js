@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 // const ingredientsRouter = require('./routes/api/ingredients');
-// const recipesRouter = require('./routes/api/recipes');
+const recipesRouter = require('./routes/api/recipes');
 const authRouter = require("./routes/api/auth");
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // app.use('/api/ingredients', ingredientsRouter);
-// app.use('/api/recipes', recipesRouter);
+app.use('/api/recipes', recipesRouter);
 app.use('/api/auth', authRouter);
 
 app.use((req, res) => {
