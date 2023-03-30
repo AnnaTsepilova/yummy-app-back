@@ -4,5 +4,4 @@ const getCategoryList = async (req, res) => {
         'Vegan', 'Vegeterian']
     return res.status(200).json(category);
 }
-
 module.exports = getCategoryList;

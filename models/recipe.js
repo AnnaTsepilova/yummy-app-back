@@ -8,7 +8,7 @@ const recipeSchema = new Schema({
     category: {
         type: String
     },
-    are: {
+    area: {
         type: String
     },
     instructions: {
