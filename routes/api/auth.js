@@ -12,8 +12,8 @@ router.post("/signin", validateBody(signinSchema), ctrlWrapper(ctrl.signin));
 
 router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
-router.get("/:userId", ctrlWrapper(ctrl.getById))
+router.get("/:userId", authenticate, ctrlWrapper(ctrl.getById))
 
-router.put("/:userId", validateBody(signupSchema), ctrlWrapper(ctrl.updateById))
+router.put("/:userId", authenticate, validateBody(signupSchema), ctrlWrapper(ctrl.updateById))
 
 module.exports = router;
