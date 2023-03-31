@@ -3,10 +3,14 @@ const getMainPage = require('./mainPage')
 const getRecipesByCategory = require('./recipesByCategory')
 const getRecipeById = require('./recipeById')
 const searchRecipe = require('./searchRecipe')
+const { addRecipe, getUserRecipe,removeRecipe } = require('./ownRecipes')
 module.exports = {
     getCategoryList,
     getMainPage,
     getRecipesByCategory,
     getRecipeById,
-    searchRecipe
+    searchRecipe,
+    addRecipe,
+    removeRecipe,
+    getUserRecipe
 }

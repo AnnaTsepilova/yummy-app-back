@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaTypes } = require('mongoose');
 
 const recipeSchema = new Schema({
 
@@ -29,6 +29,9 @@ const recipeSchema = new Schema({
     popularity: {
         type: Number
     },
+    preparation: {
+        type: String
+    },
     favorites: {
         type: Array
     },
@@ -42,10 +45,19 @@ const recipeSchema = new Schema({
         type: String
     },
     createdAt: {
-        type: Date
+        type: Date,
+        default: new Date()
+    },
+    updatedAt: {
+        type: Date,
+        default: null
     },
     ingredients: {
         type: Array
+    },
+    owner: {
+        type: SchemaTypes.ObjectId,
+        ref: 'user',
     }
 });
 
