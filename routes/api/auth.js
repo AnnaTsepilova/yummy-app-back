@@ -1,7 +1,7 @@
 const express = require("express");
 const ctrl = require("../../controllers/auth");
 const { ctrlWrapper } = require("../../helpers");
-const { validateBody, authenticate, uploadCloud } = require("../../middleware");
+const { validateBody, authenticate, imageUploader } = require("../../middleware");
 const { signupSchema, signinSchema } = require('../../schemas/user');
 
 const router = express.Router();
@@ -16,6 +16,7 @@ router.get("/:userId", authenticate, ctrlWrapper(ctrl.getById))
 
 router.put("/:userId", authenticate, validateBody(signupSchema), ctrlWrapper(ctrl.updateById))
 
-router.post("/", authenticate, uploadCloud.single('avatar'), ctrlWrapper(ctrl.petRegister));
+router.post("/avatars", authenticate, imageUploader.single('image'), ctrlWrapper(ctrl.updateAvatar));
+
 
 module.exports = router;
