@@ -29,6 +29,9 @@ const recipeSchema = new Schema({
     popularity: {
         type: Number
     },
+    preparation: {
+        type: String
+    },
     favorites: {
         type: Array
     },
