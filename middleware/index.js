@@ -1,9 +1,9 @@
 const validateBody = require('./validateBody');
 const authenticate = require('./authenticate');
-const uploadCloud = require('./upload');
+const imageUploader = require('./imageUploader');
 
 module.exports = {
   validateBody,
   authenticate,
-  uploadCloud,
+  imageUploader,
 };
