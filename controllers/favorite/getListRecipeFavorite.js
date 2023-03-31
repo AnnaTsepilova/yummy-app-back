@@ -1,11 +1,12 @@
-const Ingredients = require("../../models/ingredient");
+const Recipe = require("../../models/recipe");
 const { NotFound } = require("http-errors");
 
 const getListRecipeFavorite = async (req, res) => {
-  const ingredientsList = await Ingredients.find();
-  if (!ingredientsList) {
+  // пока заглушка
+  const recipeList = await Recipe.find();
+  if (!recipeList) {
     throw new NotFound(`ingridients not found`);
   }
-  return res.status(200).json(ingredientsList);
+  return res.status(200).json(recipeList);
 };
 module.exports = getListRecipeFavorite;

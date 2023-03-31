@@ -1,11 +1,13 @@
-const Ingredients = require("../../models/ingredient");
+const Recipe = require("../../models/recipe");
 const { NotFound } = require("http-errors");
 
 const removeRecipeFavorite = async (req, res) => {
-  const ingredientsList = await Ingredients.find();
-  if (!ingredientsList) {
+  //пока заглушка
+  const { id } = req.params;
+  const recipe = await Recipe.findOne({ _id: id });
+  if (!recipe) {
     throw new NotFound(`ingridients not found`);
   }
-  return res.status(200).json(ingredientsList);
+  return res.status(200).json(recipe);
 };
 module.exports = removeRecipeFavorite;
