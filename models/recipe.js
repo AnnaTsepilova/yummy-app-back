@@ -1,67 +1,58 @@
-const { Schema, model, SchemaTypes } = require('mongoose');
+const mongoose = require('mongoose');
 
-const recipeSchema = new Schema({
-
+const recipeSchema = new mongoose.Schema({
     title: {
-        type: String
+        type: String,
+        required: true
     },
-    category: {
-        type: String
-    },
-    area: {
-        type: String
-    },
+    category: String,
+    area: String,
     instructions: {
-        type: String
+        type: String,
+        // required: true
     },
-    description: {
-        type: String
-    },
-    thumb: {
-        type: String
-    },
-    preview: {
-        type: String
-    },
-    time: {
-        type: String
-    },
+    description: String,
+    thumb: String,
+    preview: String,
+    time: String,
     popularity: {
-        type: Number
+        type: Number,
+        default: 0
     },
-    preparation: {
-        type: String
-    },
+    preparation: String,
     favorites: {
-        type: Array
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'User',
+        default: []
     },
     likes: {
-        type: Array
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'User',
+        default: []
     },
-    youtube: {
-        type: String
-    },
-    tags: {
-        type: String
-    },
+    youtube: String,
+    tags: [String],
     createdAt: {
         type: Date,
-        default: new Date()
+        default: Date.now
     },
-    updatedAt: {
-        type: Date,
-        default: null
-    },
+    updatedAt: Date,
     ingredients: {
-        type: Array
+        type: [
+            {
+                name: String,
+                amount: String
+            }
+        ],
+        // required: true
     },
     owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        default: null
     }
 });
 
-
-const Recipe = model('recipe', recipeSchema);
+const Recipe = mongoose.model('Recipe', recipeSchema);
 
 module.exports = Recipe;
