@@ -1,0 +1,1111 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "version": "1.0.0",
+        "title": "So Yummy",
+        "description": "Showing off swagger-ui-express",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "servers": [
+        {
+            "url": "https://y-3wt8.onrender.com/api"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Authorization endpoints"
+        },
+        {
+            "name": "Recipes",
+            "description": "Recipes endpoints"
+        }
+    ],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User registration",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Registration's object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegistrationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request (invalid request body)",
+                        "content": {}
+                    },
+                    "409": {
+                        "description": "Provided email already exists",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/category-list": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get category List",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category-listResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/main-page": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get main page",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Main-pageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/{category}": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get recipes by category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "category"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/recipesByCategoryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/id/{id}": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get recipe by id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/recipesByIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/": {
+            "get": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Get user's recipes",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/userRecipesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/search": {
+            "post": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Search recipe by title or ingredient",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "default": 1
+                        },
+                        "description": "The page number to retrieve"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "search recipe by name or ingredient",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/searchRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/searchResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "missing fields in body"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/add": {
+            "post": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "Add new Recipe",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "add new Recipe",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/addRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/addResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "missing fields in body"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/remove/{id}": {
+            "delete": {
+                "tags": [
+                    "Recipes"
+                ],
+                "summary": "remove recipe by id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/deleteByIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    },
+                    "404": {
+                        "description": "recipe with id not found",
+                        "content": {}
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RegistrationRequest": {
+                "type": "object",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "qwerty123"
+                    }
+                }
+            },
+            "RegistrationResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                            "type": "string",
+                            "description": "User's email",
+                            "format": "email"
+                        },
+                        "userId": {
+                            "type": "number",
+                            "description": "User's id",
+                            "example": "32143232436545474"
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "email": "1@gmail.com",
+                        "userId": "1"
+                    },
+                    {
+                        "email": "2@gmail.com",
+                        "userId": "2"
+                    }
+                ]
+            },
+            "searchRequest": {
+                "type": "object",
+                "required": [
+                    "value",
+                    "flag"
+                ],
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "description": "recipe's or ingredient's name",
+                        "example": "beef || Chicken"
+                    },
+                    "flag": {
+                        "type": "string",
+                        "description": "flag for search",
+                        "example": "title || ingredient"
+                    }
+                }
+            },
+            "addRequest": {
+                "type": "object",
+                "required": [
+                    "title",
+                    "description",
+                    "category",
+                    "cockingTime",
+                    "ingredients",
+                    "preparation"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "description": "recipe's name",
+                        "example": "bestRecipe"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "recipe's description",
+                        "example": "chiken's roll"
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "recipe's category",
+                        "example": "Breakfast"
+                    },
+                    "cockingTime": {
+                        "type": "string",
+                        "description": "coock time",
+                        "example": "45min"
+                    },
+                    "ingredients": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "key": {
+                                    "type": "string",
+                                    "example": "Avocado"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "example": "1 lm"
+                                }
+                            }
+                        },
+                        "description": "ingredients",
+                        "example": [
+                            {
+                                "avocado": "1 lim"
+                            },
+                            {
+                                "lime": "30 ml"
+                            },
+                            {
+                                "lemon": "40 ml"
+                            }
+                        ]
+                    },
+                    "preparation": {
+                        "type": "string",
+                        "description": "recipe's preparation",
+                        "example": "do somthing"
+                    }
+                }
+            },
+            "addResponse": {
+                "type": "string",
+                "example": "success"
+            },
+            "searchResponse": {
+                "type": "object",
+                "properties": {
+                    "finded": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "preview": {
+                                    "type": "string",
+                                    "format": "url"
+                                }
+                            }
+                        }
+                    },
+                    "totalHits": {
+                        "type": "integer"
+                    },
+                    "hits": {
+                        "type": "integer"
+                    }
+                },
+                "example": [
+                    {
+                        "finded": [
+                            {
+                                "_id": "640cd5ac2d9fecf12e88981d",
+                                "title": "Beef Sunday Roast",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560538/du6my40xbfdxsxdzumhy.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88981f",
+                                "title": "Massaman Beef curry",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560538/hesmqhoutm65sz4uo8qs.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889838",
+                                "title": "Braised Beef Chilli",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560540/vr6hwj9ckfxnnhipwx4c.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889849",
+                                "title": "Beef Dumpling Stew",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560620/ktg9sptrbga8hd31n1yd.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88984e",
+                                "title": "Beef and Mustard Pie",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560621/u2r3be2bgqpqyho2dgs6.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889852",
+                                "title": "Beef and Oyster pie",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560621/ktyqeikuebqlaorqb8lp.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889855",
+                                "title": "Steak and Kidney Pie",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560621/rabgv8o8dokpcbxbf7jz.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889892",
+                                "title": "Red Peas Soup",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678561360/vdaiotaw5rd2z3utmud6.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88989c",
+                                "title": "Beef Lo Mein",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678561361/eziarrbkr6cdlo0bnqru.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88989a",
+                                "title": "Szechuan Beef",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678561360/azmgaaddtn35mgpe4y3a.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e8898b7",
+                                "title": "Bitterballen (Dutch meatballs)",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678561366/rhiwwmshkrqxeckgflt9.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e8898c9",
+                                "title": "Moussaka",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678561437/dierihh1gacw4wajxh7j.jpg"
+                            }
+                        ],
+                        "totalHits": 16,
+                        "hits": 12
+                    }
+                ]
+            },
+            "userRecipesResponse": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "example": "Beef,Breakfast,Chicken,Dessert,Goat,Lamb,Miscellaneous,Pasta,Pork,Seafood,Side,Starter,Vegan,Vegeterian"
+                }
+            },
+            "recipesByIdResponse": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "description": "unique recipe's id"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "recipe's name"
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "recipe's category"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "recipe's description"
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "time to coock"
+                    },
+                    "preparation": {
+                        "type": "string",
+                        "description": "Recipe preparation instructions"
+                    },
+                    "favorites": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "array of users , who aded recipe to favorites"
+                    },
+                    "likes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "array of users , who like recipe"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time the recipe was created"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time the recipe was last changed"
+                    },
+                    "ingredients": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "unique  ingredient's id"
+                                },
+                                "measure": {
+                                    "type": "string",
+                                    "description": "The amount of ingredient needed to make the recipe"
+                                }
+                            }
+                        },
+                        "description": "An array of ingredients needed to prepare a recipe"
+                    },
+                    "owner": {
+                        "type": "string",
+                        "description": "The unique identifier of the user who added the recipe"
+                    }
+                },
+                "example": [
+                    {
+                        "_id": "6426cc69bbfa55460b0ea034",
+                        "title": "bestRecipe",
+                        "category": "Breakfast",
+                        "description": "Soak the beans overnight in plenty of water",
+                        "time": "40min",
+                        "preparation": "kill three people",
+                        "favorites": [],
+                        "likes": [],
+                        "createdAt": "2023-03-31T11:40:28.789Z",
+                        "updatedAt": null,
+                        "ingredients": [
+                            {
+                                "id": "64268a82f19f5ba4200d1ebf",
+                                "measure": "20 ml"
+                            },
+                            {
+                                "id": "6426c87bbbfa55460b0e9fe9",
+                                "measure": "30 ml"
+                            },
+                            {
+                                "id": "6426c87bbbfa55460b0e9fed",
+                                "measure": "40 ml"
+                            },
+                            {
+                                "id": "6426c87bbbfa55460b0e9ff1",
+                                "measure": "20 la"
+                            },
+                            {
+                                "id": "6426c6f5bbfa55460b0e9fde",
+                                "measure": "30 ml"
+                            },
+                            {
+                                "id": "64268a82f19f5ba4200d1ec2",
+                                "measure": "1 lb"
+                            }
+                        ],
+                        "owner": "642505e34fa20d6fe32fb381"
+                    }
+                ]
+            },
+            "deleteByIdResponse": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "description": "unique recipe's id"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "recipe's name"
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "recipe's category"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "recipe's description"
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "time to coock"
+                    },
+                    "preparation": {
+                        "type": "string",
+                        "description": "Recipe preparation instructions"
+                    },
+                    "favorites": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "array of users , who aded recipe to favorites"
+                    },
+                    "likes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "array of users , who like recipe"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time the recipe was created"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time the recipe was last changed"
+                    },
+                    "ingredients": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "unique  ingredient's id"
+                                },
+                                "measure": {
+                                    "type": "string",
+                                    "description": "The amount of ingredient needed to make the recipe"
+                                }
+                            }
+                        },
+                        "description": "An array of ingredients needed to prepare a recipe"
+                    },
+                    "owner": {
+                        "type": "string",
+                        "description": "The unique identifier of the user who added the recipe"
+                    }
+                },
+                "example": [
+                    {
+                        "_id": "6426cc69bbfa55460b0ea034",
+                        "title": "bestRecipe",
+                        "category": "Breakfast",
+                        "description": "Soak the beans overnight in plenty of water",
+                        "time": "40min",
+                        "preparation": "kill three people",
+                        "favorites": [],
+                        "likes": [],
+                        "createdAt": "2023-03-31T11:40:28.789Z",
+                        "updatedAt": null,
+                        "ingredients": [
+                            {
+                                "id": "64268a82f19f5ba4200d1ebf",
+                                "measure": "20 ml"
+                            },
+                            {
+                                "id": "6426c87bbbfa55460b0e9fe9",
+                                "measure": "30 ml"
+                            },
+                            {
+                                "id": "6426c87bbbfa55460b0e9fed",
+                                "measure": "40 ml"
+                            },
+                            {
+                                "id": "6426c87bbbfa55460b0e9ff1",
+                                "measure": "20 la"
+                            },
+                            {
+                                "id": "6426c6f5bbfa55460b0e9fde",
+                                "measure": "30 ml"
+                            },
+                            {
+                                "id": "64268a82f19f5ba4200d1ec2",
+                                "measure": "1 lb"
+                            }
+                        ],
+                        "owner": "642505e34fa20d6fe32fb381"
+                    }
+                ]
+            },
+            "Category-listResponse": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "example": "Beef,Breakfast,Chicken,Dessert,Goat,Lamb,Miscellaneous,Pasta,Pork,Seafood,Side,Starter,Vegan,Vegeterian"
+                }
+            },
+            "recipesByCategoryResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "_id": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "preview": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "_id",
+                        "title",
+                        "preview"
+                    ],
+                    "example": [
+                        {
+                            "_id": "640cd5ac2d9fecf12e8897fc",
+                            "title": "Spaghetti Bolognese",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/huqdxgwkvbhsfjqtexsm.jpg"
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e8897f8",
+                            "title": "Irish stew",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/kknfjaqupiqhufj5kspx.jpg"
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e889808",
+                            "title": "Beef Wellington",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/vsiac0zbfrs77nzcrx9l.jpg"
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e889811",
+                            "title": "Beef Brisket Pot Roast",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560404/z3m3bwmcufzil1zlw8u0.jpg"
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e88981d",
+                            "title": "Beef Sunday Roast",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560538/du6my40xbfdxsxdzumhy.jpg"
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e88981f",
+                            "title": "Massaman Beef curry",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560538/hesmqhoutm65sz4uo8qs.jpg"
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e889826",
+                            "title": "Beef stroganoff",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560538/xdwb4tfuejtglleevm8q.jpg"
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e889838",
+                            "title": "Braised Beef Chilli",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560540/vr6hwj9ckfxnnhipwx4c.jpg"
+                        }
+                    ]
+                }
+            },
+            "Main-pageResponse": {
+                "type": "object",
+                "properties": {
+                    "Pork": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "preview": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "_id",
+                                "title",
+                                "preview"
+                            ]
+                        },
+                        "example": [
+                            {
+                                "_id": "640cd5ac2d9fecf12e88981b",
+                                "title": "Toad In The Hole",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560538/o9wdabhravnkzdjs36ce.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889833",
+                                "title": "Pork Cassoulet",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560540/fj6wdhhnk52yxugwyts5.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889842",
+                                "title": "Vietnamese Grilled Pork (bun-thit-nuong)",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560621/ictxrdqxkpvu5eltd3ro.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889859",
+                                "title": "Bubble & Squeak",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560622/vjkwqtj7nssohxiqxtwl.jpg"
+                            }
+                        ]
+                    },
+                    "Seafood": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "preview": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "_id",
+                                "title",
+                                "preview"
+                            ]
+                        },
+                        "example": [
+                            {
+                                "_id": "640cd5ac2d9fecf12e8897f2",
+                                "title": "Honey Teriyaki Salmon",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/yspi0frormix0zwglhos.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e8897f5",
+                                "title": "Mediterranean Pasta Salad",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560402/mwtf7uqrnsxvlpjqtslc.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889806",
+                                "title": "Fish pie",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/pakeiyrkttm00eb2lmia.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88980e",
+                                "title": "Recheado Masala Fish",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560403/vd9m0varcijmpwhsfo3f.jpg"
+                            }
+                        ]
+                    },
+                    "Side": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "preview": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "_id",
+                                "title",
+                                "preview"
+                            ]
+                        },
+                        "example": [
+                            {
+                                "_id": "640cd5ac2d9fecf12e88986a",
+                                "title": "French Onion Soup",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560624/er5r6180jci2r3dmcdah.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889876",
+                                "title": "Boulangère Potatoes",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678561365/ybacauishs653si77oyp.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e889879",
+                                "title": "Fennel Dauphinoise",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678561361/h0mr04umhbkiawtq1hr6.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88987d",
+                                "title": "Prawn & Fennel Bisque",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678561360/vcn04denisy7boitekus.jpg"
+                            }
+                        ]
+                    },
+                    "Starter": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "preview": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "_id",
+                                "title",
+                                "preview"
+                            ]
+                        },
+                        "example": [
+                            {
+                                "_id": "640cd5ac2d9fecf12e8897f6",
+                                "title": "Cream Cheese Tart",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560403/ldjhhe56jmuhvmsqsvqp.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88982c",
+                                "title": "Clam chowder",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560538/v8hhb1zeu0tegaw1xlzd.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88982e",
+                                "title": "Broccoli & Stilton soup",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560540/hgu0hiuh1xykqjlm5aiy.jpg"
+                            },
+                            {
+                                "_id": "640cd5ac2d9fecf12e88982d",
+                                "title": "Creamy Tomato Soup",
+                                "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560539/pu8so7apefew8gcq70rz.jpg"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "Bearer": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
