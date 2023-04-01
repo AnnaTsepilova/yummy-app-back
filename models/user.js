@@ -23,10 +23,10 @@ const userSchema = Schema({
   },
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'user',
   }
 }, { versionKey: false, timestamps: true });
 
-const User = model('User', userSchema);
+const User = model('user', userSchema);
 
 module.exports = User;

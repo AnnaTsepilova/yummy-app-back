@@ -6,6 +6,7 @@ require("dotenv").config();
 const favoriteRouter = require("./routes/api/favorite");
 const ingredientsRouter = require("./routes/api/ingredients");
 const recipesRouter = require("./routes/api/recipes");
+const subscribeRoutes = require("./routes/api/subscribe");
 const authRouter = require("./routes/api/auth");
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/api/favorite", favoriteRouter);
 app.use("/api/ingredients", ingredientsRouter);
 app.use("/api/recipes", recipesRouter);
+app.use("/api/subscribe", subscribeRoutes);
 app.use("/api/auth", authRouter);
 
 app.use((req, res) => {

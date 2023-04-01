@@ -56,7 +56,7 @@ const recipeSchema = new Schema({
         type: Array
     },
     owner: {
-        type: SchemaTypes.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'user',
     }
 });
