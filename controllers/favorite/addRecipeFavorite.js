@@ -7,7 +7,10 @@ const addRecipeFavorite = async (req, res) => {
 
   const updateRecipe = await Recipe.findOneAndUpdate(
     { _id: id },
-    { $push: { favorites: req.user.id } }
+    { $addToSet: { favorites: req.user._id } },
+    {
+      new: true,
+    }
   );
   if (!updateRecipe) {
     throw new NotFound(`recipe not found`);
