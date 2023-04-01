@@ -1,7 +1,7 @@
 const Subscriber = require('../../models/subscription');
 const { sendEmail } = require('../../helpers');
 const mongoose = require('mongoose');
-const { EMAIL_FROM } = process.env;
+const { EMAIL_FROM, LETTER_IMG } = process.env;
 
 const subscribe = async (req, res) => {
   try {
@@ -20,7 +20,7 @@ const subscribe = async (req, res) => {
       subject: 'Привет, команда! Шлю спам с уважением :). Письмо со смыслом, кто знает инглиш тот поймет)',
       html: `
         <div>
-          <img src="https://res.cloudinary.com/dbcvume5y/image/upload/c_scale,h_1024,q_auto:best/v1680305632/letter_zvigs2.png" alt="Изображение">
+          <img src="${LETTER_IMG}" alt="Letter image"> 
         </div>
       `,
       headers: {
