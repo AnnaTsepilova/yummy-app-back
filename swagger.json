@@ -31,7 +31,7 @@
         }
     ],
     "paths": {
-        "/auth/register": {
+        "/auth/signup": {
             "post": {
                 "tags": [
                     "Auth"
@@ -71,6 +71,75 @@
                     },
                     "409": {
                         "description": "Provided email already exists",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/auth/signin": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Login's object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request (invalid request body)",
+                        "content": {}
+                    },
+                    "409": {
+                        "description": "Password of email wrong",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {}
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {}
                     }
                 }
@@ -381,6 +450,54 @@
                 "type": "object",
                 "required": [
                     "email",
+                    "password",
+                    "name"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "qwerty123"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "Ivan"
+                    }
+                }
+            },
+            "RegistrationResponse": {
+                "type": "object",
+                "items": {
+                    "properties": {
+                        "email": {
+                            "type": "string",
+                            "description": "User's email",
+                            "format": "email"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "User's name",
+                            "example": "Ivan"
+                        }
+                    }
+                },
+                "example": {
+                    "user": {
+                        "email": "1@gmail.com",
+                        "name": "Ivan"
+                    }
+                }
+            },
+            "LoginRequest": {
+                "type": "object",
+                "required": [
+                    "email",
                     "password"
                 ],
                 "properties": {
@@ -396,33 +513,28 @@
                     }
                 }
             },
-            "RegistrationResponse": {
-                "type": "array",
+            "LoginResponse": {
+                "type": "object",
                 "items": {
-                    "type": "object",
                     "properties": {
+                        "token": {
+                            "type": "string",
+                            "description": "User's token",
+                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg"
+                        },
                         "email": {
                             "type": "string",
                             "description": "User's email",
                             "format": "email"
-                        },
-                        "userId": {
-                            "type": "number",
-                            "description": "User's id",
-                            "example": "32143232436545474"
                         }
                     }
                 },
-                "example": [
-                    {
-                        "email": "1@gmail.com",
-                        "userId": "1"
-                    },
-                    {
-                        "email": "2@gmail.com",
-                        "userId": "2"
+                "example": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg",
+                    "user": {
+                        "email": "1@gmail.com"
                     }
-                ]
+                }
             },
             "searchRequest": {
                 "type": "object",
