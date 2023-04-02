@@ -1,16 +1,10 @@
 const mongoose = require('mongoose');
 
 const recipeSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
+    title: String,
     category: String,
     area: String,
-    instructions: {
-        type: String,
-        // required: true
-    },
+    instructions: String,
     description: String,
     thumb: String,
     preview: String,
@@ -43,8 +37,7 @@ const recipeSchema = new mongoose.Schema({
                 name: String,
                 amount: String
             }
-        ],
-        // required: true
+        ]
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
