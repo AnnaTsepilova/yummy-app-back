@@ -1,51 +1,23 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const recipeSchema = new mongoose.Schema({
-    title: String,
-    category: String,
-    area: String,
-    instructions: String,
-    description: String,
-    thumb: String,
-    preview: String,
-    time: String,
-    popularity: {
-        type: Number,
-        default: 0
-    },
-    preparation: String,
-    favorites: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'User',
-        default: []
-    },
-    likes: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'User',
-        default: []
-    },
-    youtube: String,
-    tags: [String],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    updatedAt: Date,
-    ingredients: {
-        type: [
-            {
-                name: String,
-                amount: String
-            }
-        ]
-    },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        default: null
-    }
+const recipeSchema = new Schema({
+    title: { type: String },
+    category: { type: String },
+    area: { type: String },
+    instructions: { type: String },
+    description: { type: String },
+    thumb: { type: String },
+    preview: { type: String },
+    time: { type: String },
+    popularity: { type: Number },
+    favorites: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    youtube: { type: String },
+    tags: [{ type: String }],
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now }
 });
 
-const Recipe = mongoose.model('Recipe', recipeSchema);
+const Recipe = model('Recipe', recipeSchema);
 
 module.exports = Recipe;
