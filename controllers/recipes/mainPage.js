@@ -3,12 +3,9 @@ const Recipe = require("../../models/recipe");
 
 const getMainPage = async (req, res) => {
     const limitNumber = 4;
-    const category = ['Beef', 'Breakfast', 'Chicken', 'Dessert', 'Goat', 'Lamb',
-        'Miscellaneous', 'Pasta', 'Pork', 'Seafood', 'Side', 'Starter',
-        'Vegan', 'Vegeterian'];
+    const category = ['Breakfast', 'Miscellaneous', 'Vegan', 'Dessert'];
     let result = {};
-    let iterator = Math.floor(Math.random() * (category.length + 1 - limitNumber));
-    for (let i = iterator; i < iterator + limitNumber && i < category.length; i++) {
+    for (let i = 0; i < category.length; i++) {
         const recipes = await Recipe.find({ category: category[i] }).select({ title: 1, preview: 1 }).limit(limitNumber);
         result[category[i]] = recipes;
     }
