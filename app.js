@@ -12,7 +12,7 @@ const recipesRouter = require("./routes/api/recipes");
 const unsubscribeRoutes = require("./routes/api/unsubscribe");
 const subscribeRoutes = require("./routes/api/subscribe");
 const authRouter = require("./routes/api/auth");
-
+const shopingListRouter = require('./routes/api/shopping-list')
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -27,6 +27,7 @@ app.use("/api/recipes", recipesRouter);
 app.use("/api/unsubscribe", unsubscribeRoutes);
 app.use("/api/subscribe", subscribeRoutes);
 app.use("/api/auth", authRouter);
+app.use("/api/shopping-list", shopingListRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
