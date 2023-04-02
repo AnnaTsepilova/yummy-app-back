@@ -126,7 +126,7 @@
                 "tags": [
                     "Auth"
                 ],
-                "summary": "User login",
+                "summary": "User logout",
                 "parameters": [],
                 "security": [
                     {
