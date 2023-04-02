@@ -31,7 +31,7 @@
         }
     ],
     "paths": {
-        "/auth/register": {
+        "/auth/signup": {
             "post": {
                 "tags": [
                     "Auth"
@@ -71,6 +71,154 @@
                     },
                     "409": {
                         "description": "Provided email already exists",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/auth/signin": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Login's object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request (invalid request body)",
+                        "content": {}
+                    },
+                    "409": {
+                        "description": "Password of email wrong",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User logout",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {}
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/auth/{userId}": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get user By Id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userId"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetByIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "update user by Id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userId"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "object for update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateByIdRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateByIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {}
                     }
                 }
@@ -381,6 +529,54 @@
                 "type": "object",
                 "required": [
                     "email",
+                    "password",
+                    "name"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "qwerty123"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "Ivan"
+                    }
+                }
+            },
+            "RegistrationResponse": {
+                "type": "object",
+                "items": {
+                    "properties": {
+                        "email": {
+                            "type": "string",
+                            "description": "User's email",
+                            "format": "email"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "User's name",
+                            "example": "Ivan"
+                        }
+                    }
+                },
+                "example": {
+                    "user": {
+                        "email": "1@gmail.com",
+                        "name": "Ivan"
+                    }
+                }
+            },
+            "LoginRequest": {
+                "type": "object",
+                "required": [
+                    "email",
                     "password"
                 ],
                 "properties": {
@@ -396,33 +592,102 @@
                     }
                 }
             },
-            "RegistrationResponse": {
-                "type": "array",
+            "LoginResponse": {
+                "type": "object",
                 "items": {
-                    "type": "object",
                     "properties": {
+                        "token": {
+                            "type": "string",
+                            "description": "User's token",
+                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg"
+                        },
                         "email": {
                             "type": "string",
                             "description": "User's email",
                             "format": "email"
-                        },
-                        "userId": {
-                            "type": "number",
-                            "description": "User's id",
-                            "example": "32143232436545474"
                         }
                     }
                 },
-                "example": [
-                    {
-                        "email": "1@gmail.com",
-                        "userId": "1"
-                    },
-                    {
-                        "email": "2@gmail.com",
-                        "userId": "2"
+                "example": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg",
+                    "user": {
+                        "email": "1@gmail.com"
                     }
-                ]
+                }
+            },
+            "UpdateByIdRequest": {
+                "type": "object",
+                "required": [
+                    "email",
+                    "password",
+                    "name"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "qwerty123"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "User's name",
+                        "example": "Ivan"
+                    }
+                }
+            },
+            "UpdateByIdResponse": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "description": "unique user's id",
+                        "example": "642839cba2afd5f4c6a2d1da"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "user's name",
+                        "example": "Ivan"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "user's email",
+                        "example": "1@mail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "user's password",
+                        "example": "qwerty123"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "user's token",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDQxMjczMiwiZXhwIjoxNjgwNDE2MzMyfQ.Hc5VZE9Fn15unLh4aiWCKykNc03ZGfqc11tFZ3ISakw"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-04-01T14:03:55.361Z"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-04-02T05:18:52.374Z"
+                    },
+                    "example": {
+                        "_id": "642839cba2afd5f4c6a2d1da",
+                        "name": "Ivan",
+                        "email": "1@mail.com",
+                        "password": "qwer1234",
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDQxMjczMiwiZXhwIjoxNjgwNDE2MzMyfQ.Hc5VZE9Fn15unLh4aiWCKykNc03ZGfqc11tFZ3ISakw",
+                        "createdAt": "2023-04-01T14:03:55.361Z",
+                        "updatedAt": "2023-04-02T05:18:52.374Z"
+                    }
+                }
             },
             "searchRequest": {
                 "type": "object",
@@ -852,6 +1117,43 @@
                 "items": {
                     "type": "string",
                     "example": "Beef,Breakfast,Chicken,Dessert,Goat,Lamb,Miscellaneous,Pasta,Pork,Seafood,Side,Starter,Vegan,Vegeterian"
+                }
+            },
+            "GetByIdResponse": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "description": "unique user's id"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "user's name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "user's email"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "user's token"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "example": {
+                    "_id": "642839cba2afd5f4c6a2d1da",
+                    "name": "Ivan",
+                    "email": "1@mail.com",
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDQxMjczMiwiZXhwIjoxNjgwNDE2MzMyfQ.Hc5VZE9Fn15unLh4aiWCKykNc03ZGfqc11tFZ3ISakw",
+                    "createdAt": "2023-04-01T14:03:55.361Z",
+                    "updatedAt": "2023-04-02T05:18:52.374Z"
                 }
             },
             "recipesByCategoryResponse": {
