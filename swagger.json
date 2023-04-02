@@ -224,6 +224,47 @@
                 }
             }
         },
+        "/auth/avatars": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Upload a file",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "object for update",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UploadRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UploadResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
         "/recipes/category-list": {
             "get": {
                 "tags": [
@@ -1117,6 +1158,41 @@
                 "items": {
                     "type": "string",
                     "example": "Beef,Breakfast,Chicken,Dessert,Goat,Lamb,Miscellaneous,Pasta,Pork,Seafood,Side,Starter,Vegan,Vegeterian"
+                }
+            },
+            "UploadRequest": {
+                "type": "object",
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary"
+                    }
+                }
+            },
+            "UploadResponse": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "Avatar upload successfully"
+                    },
+                    "user": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "example": "Ivan"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "1@mail.com"
+                            },
+                            "avatar": {
+                                "type": "string",
+                                "example": "https://res.cloudinary.com/dbcasda/image/upload/v1623123131/so-yummy/avatars/acasdw231-7741-313d-ba03-31411131as.png.png"
+                            }
+                        }
+                    }
                 }
             },
             "GetByIdResponse": {
