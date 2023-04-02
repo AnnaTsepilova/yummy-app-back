@@ -18,6 +18,9 @@ const userSchema = Schema({
     type: String,
     default: null,
   },
+  shopingList: {
+    type: Array
+  },
   avatar: {
     type: String,
   },
