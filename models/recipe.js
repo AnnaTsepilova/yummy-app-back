@@ -12,6 +12,9 @@ const recipeSchema = new Schema({
     popularity: { type: Number },
     favorites: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    ingredients: {
+        type: Array
+    },
     youtube: { type: String },
     tags: [{ type: String }],
     createdAt: { type: Date, default: Date.now },
