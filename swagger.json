@@ -36,6 +36,14 @@
         {
             "name": "Ingredients",
             "description": "Ingredients endpoints"
+        },
+        {
+            "name": "Favorite",
+            "description": "Recipe's favorite endpoints"
+        },
+        {
+            "name": "Subscribe",
+            "description": "Subscribe endpoints"
         }
     ],
     "paths": {
@@ -722,6 +730,104 @@
                     {
                         "in": "path",
                         "name": "ingredientTtl"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetRecipesByIngredientResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/favorite/list": {
+            "get": {
+                "tags": [
+                    "Favorite"
+                ],
+                "summary": "Get favorite recipe's",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetRecipesByIngredientResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/favorite/{id}": {
+            "post": {
+                "tags": [
+                    "Favorite"
+                ],
+                "summary": "add recipe to favorite",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetRecipesByIngredientResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Favorite"
+                ],
+                "summary": "update recipe in favorite",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id"
                     }
                 ],
                 "security": [
