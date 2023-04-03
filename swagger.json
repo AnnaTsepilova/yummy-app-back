@@ -1145,7 +1145,7 @@
                             "properties": {
                                 "key": {
                                     "type": "string",
-                                    "example": "Avocado"
+                                    "example": "640c2dd963a319ea671e365b"
                                 },
                                 "value": {
                                     "type": "string",

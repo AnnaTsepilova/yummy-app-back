@@ -6,18 +6,14 @@ const addRecipe = async (req, res) => {
     const { id } = req.user;
     const { title, description, category, cockingTime, ingredients, preparation } = req.body;
     if (!title && !description && !category && !cockingTime && !ingredients && !preparation) {
-        throw new BadRequest('Need body {title,description,category,cockingTime,ingredients[{name:"messure"}],preparation}')
+        throw new BadRequest('Need body {title,description,category,cockingTime,ingredients[{id:"messure"}],preparation}')
     }
-    const ingredientsTtl = ingredients.map(item => Object.keys(item).join(''));
+    const ingredientsIds = ingredients.map(item => Object.keys(item).join(''));
     const ingredientsMessure = ingredients.map(item => Object.values(item).join(''));
     const tempArray = [];
     const ingredientsArray = [];
-    for (let i = 0; i < ingredientsTtl.length; i++) {
-        const ingr = await Ingredients.findOne({ ttl: ingredientsTtl[i] })
-        if (!ingr) {
-            await Ingredients.create({ ttl: ingredientsTtl[i] })
-        }
-        const ingrIds = await Ingredients.findOne({ ttl: ingredientsTtl[i] }).select({ _id: 1 });
+    for (let i = 0; i < ingredientsIds.length; i++) {
+        const ingrIds = await Ingredients.findOne({ _id: ingredientsIds[i] }).select({ _id: 1 });
         tempArray.push(ingrIds._id);
         const ingredients = {
             id: tempArray[i],

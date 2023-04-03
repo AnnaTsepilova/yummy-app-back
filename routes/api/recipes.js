@@ -10,6 +10,6 @@ router.get('/:category', /* authenticate, */ ctrlWrapper(ctrl.getRecipesByCatego
 router.get('/id/:id', /* authenticate, */ ctrlWrapper(ctrl.getRecipeById));
 router.get('/', /* authenticate, */ ctrlWrapper(ctrl.getUserRecipe))
 router.post('/search', /* authenticate, */ ctrlWrapper(ctrl.searchRecipe))
-router.post('/add', /* authenticate, */ ctrlWrapper(ctrl.addRecipe))
+router.post('/add', authenticate, ctrlWrapper(ctrl.addRecipe))
 router.delete('/remove/:id', /* authenticate, */ ctrlWrapper(ctrl.removeRecipe))
 module.exports = router;
