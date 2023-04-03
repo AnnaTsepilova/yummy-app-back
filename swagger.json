@@ -681,6 +681,71 @@
                     }
                 }
             }
+        },
+        "/ingredients/list": {
+            "get": {
+                "tags": [
+                    "Ingredients"
+                ],
+                "summary": "Get Ingredients list",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetIngredientsListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/ingredients/{ingredientTtl}": {
+            "get": {
+                "tags": [
+                    "Ingredients"
+                ],
+                "summary": "Get recipes by ingredient",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "ingredientTtl"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetRecipesByIngredientResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1677,6 +1742,259 @@
                 "example": {
                     "messure": "150 li"
                 }
+            },
+            "GetIngredientsListResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "ingredient's id"
+                        },
+                        "ttl": {
+                            "type": "string",
+                            "description": "ingredient's title"
+                        },
+                        "desc": {
+                            "type": "string",
+                            "description": "ingredient's desc"
+                        },
+                        "t": {
+                            "type": "string",
+                            "description": "ingredient's t"
+                        },
+                        "thb": {
+                            "type": "string",
+                            "description": "ingredient's image"
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "_id": "640c2dd963a319ea671e365b",
+                        "ttl": "Chicken",
+                        "desc": "The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus). It is one of the most common and widespread domestic animals, with a total population of more than 19 billion as of 2011. There are more chickens in the world than any other bird or domesticated fowl. Humans keep chickens primarily as a source of food (consuming both their meat and eggs) and, less commonly, as pets. Originally raised for cockfighting or for special ceremonies, chickens were not kept for food until the Hellenistic period (4th–2nd centuries BC).\r\n\r\nGenetic studies have pointed to multiple maternal origins in South Asia, Southeast Asia, and East Asia, but with the clade found in the Americas, Europe, the Middle East and Africa originating in the Indian subcontinent. From ancient India, the domesticated chicken spread to Lydia in western Asia Minor, and to Greece by the 5th century BC. Fowl had been known in Egypt since the mid-15th century BC, with the \"bird that gives birth every day\" having come to Egypt from the land between Syria and Shinar, Babylonia, according to the annals of Thutmose III.",
+                        "t": "",
+                        "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564123/rw8pn3541bmukb8d3mio.png"
+                    },
+                    {
+                        "_id": "640c2dd963a319ea671e365c",
+                        "ttl": "Salmon",
+                        "desc": "Salmon is the common name for several species of ray-finned fish in the family Salmonidae. Other fish in the same family include trout, char, grayling and whitefish. Salmon are native to tributaries of the North Atlantic (genus Salmo) and Pacific Ocean (genus Oncorhynchus). Many species of salmon have been introduced into non-native environments such as the Great Lakes of North America and Patagonia in South America. Salmon are intensively farmed in many parts of the world.\r\n\r\nTypically, salmon are anadromous: they hatch in fresh water, migrate to the ocean, then return to fresh water to reproduce. However, populations of several species are restricted to fresh water through their lives. Folklore has it that the fish return to the exact spot where they hatched to spawn. Tracking studies have shown this to be mostly true. A portion of a returning salmon run may stray and spawn in different freshwater systems; the percent of straying depends on the species of salmon. Homing behavior has been shown to depend on olfactory memory. Salmon date back to the Neogene.",
+                        "t": "",
+                        "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564123/bwzvxyjxozyankmd6ky8.png"
+                    },
+                    {
+                        "_id": "640c2dd963a319ea671e365d",
+                        "ttl": "Beef",
+                        "desc": "Beef is the culinary name for meat from cattle, particularly skeletal muscle. Humans have been eating beef since prehistoric times. Beef is a source of high-quality protein and nutrients.\r\n\r\nMost beef skeletal muscle meat can be used as is by merely cutting into certain parts, such as roasts, short ribs or steak (filet mignon, sirloin steak, rump steak, rib steak, rib eye steak, hanger steak, etc.), while other cuts are processed (corned beef or beef jerky). Trimmings, on the other hand, are usually mixed with meat from older, leaner (therefore tougher) cattle, are ground, minced or used in sausages. The blood is used in some varieties called blood sausage. Other parts that are eaten include other muscles and offal, such as the oxtail, liver, tongue, tripe from the reticulum or rumen, glands (particularly the pancreas and thymus, referred to as sweetbread), the heart, the brain (although forbidden where there is a danger of bovine spongiform encephalopathy, BSE, commonly referred to as mad cow disease), the kidneys, and the tender testicles of the bull (known in the United States as calf fries, prairie oysters, or Rocky Mountain oysters). Some intestines are cooked and eaten as is, but are more often cleaned and used as natural sausage casings. The bones are used for making beef stock.",
+                        "t": "",
+                        "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564124/zzxbvvvye3pnooygfdgg.png"
+                    }
+                ]
+            },
+            "GetRecipesByIngredientResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "recipe's id"
+                        },
+                        "title": {
+                            "type": "string",
+                            "description": "recipe's title"
+                        },
+                        "category": {
+                            "type": "string",
+                            "description": "recipe's category"
+                        },
+                        "area": {
+                            "type": "string",
+                            "description": "recipe's area"
+                        },
+                        "instructions": {
+                            "type": "string",
+                            "description": "recipe's instructions"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "recipe's instructions"
+                        },
+                        "favorites": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "example": "640cd5ac2d9fecf12e8897ee"
+                            },
+                            "description": "recipe's in favorite"
+                        },
+                        "likes": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "example": "640cd5ac2d9fecf12e8897ee"
+                            },
+                            "description": "recipe's in favorite"
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "_id": "640cd5ac2d9fecf12e8897fc",
+                        "title": "Spaghetti Bolognese",
+                        "category": "Beef",
+                        "area": "Italian",
+                        "instructions": "Put the onion and oil in a large pan and fry over a fairly high heat for 3-4 mins. Add the garlic and mince and fry until they both brown. Add the mushrooms and herbs, and cook for another couple of mins.\r\n\r\nStir in the tomatoes, beef stock, tomato ketchup or purée, Worcestershire sauce and seasoning. Bring to the boil, then reduce the heat, cover and simmer, stirring occasionally, for 30 mins.\r\n\r\nMeanwhile, cook the spaghetti in a large pan of boiling, salted water, according to packet instructions. Drain well, run hot water through it, put it back in the pan and add a dash of olive oil, if you like, then stir in the meat sauce. Serve in hot bowls and hand round Parmesan cheese, for sprinkling on top.",
+                        "description": "An Italian pasta dish made with spaghetti and a meat-based sauce, typically containing beef, tomatoes, onions, garlic, and herbs.",
+                        "thumb": "https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg",
+                        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/huqdxgwkvbhsfjqtexsm.jpg",
+                        "time": "45",
+                        "popularity": 2,
+                        "favorites": [
+                            "640cd5ac2d9fecf12e8897ee",
+                            "640cd5ac2d9fecf12e8897ef",
+                            "64135631f9ab2e3d387201b9",
+                            "641970802264c318da9ac920",
+                            "6419fc19eefa4b0ab8eaa5e8",
+                            "6418a645e05e5b3d5b47ae8d",
+                            "641ab80cdf4a1f25b1611694"
+                        ],
+                        "likes": [
+                            "64133d202bf7d7dccd4f9fd5",
+                            "641807a63c1d9f12cba908c8"
+                        ],
+                        "youtube": "https://www.youtube.com/watch?v=-gF8d-fitkU",
+                        "tags": [
+                            "Pasta",
+                            "Meat"
+                        ],
+                        "createdAt": "2023-03-11T19:25:33.240Z",
+                        "updatedAt": "2023-03-23T10:28:36.572Z",
+                        "ingredients": [
+                            {
+                                "id": "640c2dd963a319ea671e372e",
+                                "measure": "2"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e372c",
+                                "measure": "1tbsp"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e36e3",
+                                "measure": "1 clove"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e370f",
+                                "measure": "500g"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e3726",
+                                "measure": "90g"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e36c4",
+                                "measure": "1tsp"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e377f",
+                                "measure": "400g can"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e36ff",
+                                "measure": "300ml"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e377e",
+                                "measure": "1tbsp"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e3798",
+                                "measure": "1tbsp"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e376e",
+                                "measure": "350g"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e3735",
+                                "measure": "Topping"
+                            }
+                        ]
+                    },
+                    {
+                        "_id": "640cd5ac2d9fecf12e8897ee",
+                        "title": "Bakewell tart",
+                        "category": "Dessert",
+                        "area": "British",
+                        "instructions": "To make the pastry, measure the flour into a bowl and rub in the butter with your fingertips until the mixture resembles fine breadcrumbs. Add the water, mixing to form a soft dough.\r\nRoll out the dough on a lightly floured work surface and use to line a 20cm/8in flan tin. Leave in the fridge to chill for 30 minutes.\r\nPreheat the oven to 200C/400F/Gas 6 (180C fan).\r\nLine the pastry case with foil and fill with baking beans. Bake blind for about 15 minutes, then remove the beans and foil and cook for a further five minutes to dry out the base.\r\nFor the filing, spread the base of the flan generously with raspberry jam.\r\nMelt the butter in a pan, take off the heat and then stir in the sugar. Add ground almonds, egg and almond extract. Pour into the flan tin and sprinkle over the flaked almonds.\r\nBake for about 35 minutes. If the almonds seem to be browning too quickly, cover the tart loosely with foil to prevent them burning.",
+                        "description": "A British dessert consisting of a shortcrust pastry shell filled with raspberry jam, frangipane, and topped with almonds.",
+                        "thumb": "https://www.themealdb.com/images/media/meals/wyrqqq1468233628.jpg",
+                        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/lygbfa7j94dgegmvnpas.jpg",
+                        "time": "85",
+                        "popularity": 1,
+                        "favorites": [
+                            "640e10b12752a54004e7b2bc",
+                            "6411fef75848f7534c62c591",
+                            "64136b81f9ab2e3d387206df"
+                        ],
+                        "likes": [
+                            "640ad9d808527273c5cd789c"
+                        ],
+                        "youtube": "https://www.youtube.com/watch?v=1ahpSTf_Pvk",
+                        "tags": [
+                            "Tart",
+                            "Baking",
+                            "Alcoholic"
+                        ],
+                        "createdAt": "2023-03-11T19:25:33.239Z",
+                        "updatedAt": "2023-03-22T11:38:07.552Z",
+                        "ingredients": [
+                            {
+                                "id": "640c2dd963a319ea671e3743",
+                                "measure": "175g/6oz"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e369a",
+                                "measure": "75g/2½oz"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e36ad",
+                                "measure": "2-3 tbsp"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e3749",
+                                "measure": "1 tbsp"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e367e",
+                                "measure": "125g/4½oz"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e3687",
+                                "measure": "125g/4½oz"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e36f6",
+                                "measure": "125g/4½oz"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e36da",
+                                "measure": "1"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e3861",
+                                "measure": "½ tsp"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e36d5",
+                                "measure": "50g/1¾oz"
+                            }
+                        ]
+                    }
+                ]
             }
         },
         "securitySchemes": {
