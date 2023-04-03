@@ -44,6 +44,10 @@
         {
             "name": "Subscribe",
             "description": "Subscribe endpoints"
+        },
+        {
+            "name": "Unsubscribe",
+            "description": "Unsubscribe endpoints"
         }
     ],
     "paths": {
@@ -845,6 +849,70 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/subscribe/": {
+            "post": {
+                "tags": [
+                    "Subscribe"
+                ],
+                "summary": "subscribe for news",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "email for subscribe",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SubscribeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Subscription Succesfull",
+                        "content": {}
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/unsubscribe/{email}": {
+            "get": {
+                "tags": [
+                    "Unsubscribe"
+                ],
+                "summary": "unsubscribe for news",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "email"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "unSubscription Succesfull",
+                        "content": {}
                     },
                     "401": {
                         "description": "Unauthorized",
@@ -2101,6 +2169,18 @@
                         ]
                     }
                 ]
+            },
+            "SubscribeRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    }
+                },
+                "example": {
+                    "email": "1@mail.com"
+                }
             }
         },
         "securitySchemes": {
