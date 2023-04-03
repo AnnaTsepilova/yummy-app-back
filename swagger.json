@@ -28,6 +28,14 @@
         {
             "name": "Recipes",
             "description": "Recipes endpoints"
+        },
+        {
+            "name": "Shoping-list",
+            "description": "Shoping-list endpoints"
+        },
+        {
+            "name": "Ingredients",
+            "description": "Ingredients endpoints"
         }
     ],
     "paths": {
@@ -558,6 +566,117 @@
                     },
                     "404": {
                         "description": "recipe with id not found",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/shoping-list/": {
+            "get": {
+                "tags": [
+                    "Shoping-list"
+                ],
+                "summary": "Get shoping-list",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetShopingListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/shoping-list/add": {
+            "post": {
+                "tags": [
+                    "Shoping-list"
+                ],
+                "summary": "add to shoping-list",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "add to shoping-list",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/addToShoping-listRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/addToShoping-listResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/shoping-list/remove/{shopingListId}": {
+            "delete": {
+                "tags": [
+                    "Shoping-list"
+                ],
+                "summary": "delete ingredients from shoping-list",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "shopingListId"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "add to shoping-list",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/removeFromShoping-listRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {}
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {}
                     }
                 }
@@ -1475,6 +1594,88 @@
                             }
                         ]
                     }
+                }
+            },
+            "GetShopingListResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "ingredient's id"
+                        },
+                        "messure": {
+                            "type": "string",
+                            "description": "ingredient's messure"
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "id": "640c2dd963a319ea671e365b",
+                        "messure": "150 li"
+                    },
+                    {
+                        "id": "640c2dd963a319ea671e365b",
+                        "messure": "60 ka"
+                    }
+                ]
+            },
+            "addToShoping-listRequest": {
+                "type": "object",
+                "properties": {
+                    "640c2dd963a319ea671e365b": {
+                        "type": "string",
+                        "description": "ingredient's id"
+                    },
+                    "150 li": {
+                        "type": "string",
+                        "description": "ingredient's messure"
+                    }
+                },
+                "example": {
+                    "640c2dd963a319ea671e365b": "120 lm"
+                }
+            },
+            "addToShoping-listResponse": {
+                "shopingList": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "description": "ingredient's id"
+                            },
+                            "messure": {
+                                "type": "string",
+                                "description": "ingredient's messure"
+                            }
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "id": "640c2dd963a319ea671e365b",
+                        "messure": "150 li"
+                    },
+                    {
+                        "id": "640c2dd963a319ea671e365b",
+                        "messure": "60 ka"
+                    }
+                ]
+            },
+            "removeFromShoping-listRequest": {
+                "type": "object",
+                "properties": {
+                    "messure": {
+                        "type": "string",
+                        "description": "ingredient's messure"
+                    }
+                },
+                "example": {
+                    "messure": "150 li"
                 }
             }
         },

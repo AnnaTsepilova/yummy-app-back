@@ -26,10 +26,10 @@ const addItemInList = async (req, res) => {
         }
         const newIngrCount = user.shopingList.filter(item => item.id.toString() === ingrId._id.toString()).map(item => item.messure).findIndex(item => item.includes(messureName));
         await user.shopingList.splice(newIngrCount, 1, ingrToShoppingList);
-        const addedToShoppingList = await User.findOneAndUpdate({ _id: id }, { shopingList: user.shopingList }, { new: true })
+        const addedToShoppingList = await User.findOneAndUpdate({ _id: id }, { shopingList: user.shopingList }, { new: true }).select({ shopingList: 1 })
         return res.status(200).json(addedToShoppingList);
     }
-    const addedToShoppingList = await User.findOneAndUpdate({ _id: id }, { $push: { shopingList: ingrToShoppingList } }, { new: true })
+    const addedToShoppingList = await User.findOneAndUpdate({ _id: id }, { $push: { shopingList: ingrToShoppingList } }, { new: true }).select({ shopingList: 1 })
     return res.status(200).json(addedToShoppingList);
 }
 
