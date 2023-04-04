@@ -1190,13 +1190,13 @@
                         "description": "ingredients",
                         "example": [
                             {
-                                "avocado": "1 lim"
+                                "640c2dd963a319ea671e365b": "1 lim"
                             },
                             {
-                                "lime": "30 ml"
+                                "640c2dd963a319ea671e365c": "30 ml"
                             },
                             {
-                                "lemon": "40 ml"
+                                "640c2dd963a319ea671e365f": "40 ml"
                             }
                         ]
                     },
