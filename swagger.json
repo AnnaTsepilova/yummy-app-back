@@ -1170,7 +1170,7 @@
                     "cockingTime": {
                         "type": "string",
                         "description": "coock time",
-                        "example": "45min"
+                        "example": "45"
                     },
                     "ingredients": {
                         "type": "array",
