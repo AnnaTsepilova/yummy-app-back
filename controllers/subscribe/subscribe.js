@@ -12,7 +12,7 @@ const subscribe = async (req, res) => {
       return res.status(400).send('Email already subscribed');
     }
 
-    const unsubscribeUrl = `${BASE_URL}/unsubscribe/${email}`;
+    const unsubscribeUrl = `${BASE_URL}/api/unsubscribe/${email}`;
 
     const mailOptions = {
       from: EMAIL_FROM,
