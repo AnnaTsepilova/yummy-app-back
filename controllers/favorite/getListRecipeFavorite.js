@@ -2,7 +2,6 @@ const Recipe = require("../../models/recipe");
 const { NotFound } = require("http-errors");
 
 const getListRecipeFavorite = async (req, res) => {
-  console.log("User: ", req.user._id);
   const recipeList = await Recipe.find({ favorites: req.user._id });
   if (!recipeList) {
     throw new NotFound(`ingridients not found`);
