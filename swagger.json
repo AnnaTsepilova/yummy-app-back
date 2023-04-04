@@ -587,7 +587,7 @@
                 }
             }
         },
-        "/shoping-list/": {
+        "/shopping-list/": {
             "get": {
                 "tags": [
                     "Shoping-list"
@@ -617,7 +617,7 @@
                 }
             }
         },
-        "/shoping-list/add": {
+        "/shopping-list/add": {
             "post": {
                 "tags": [
                     "Shoping-list"
@@ -658,7 +658,7 @@
                 }
             }
         },
-        "/shoping-list/remove/{shopingListId}": {
+        "/shopping-list/remove/{shoppingListId}": {
             "delete": {
                 "tags": [
                     "Shoping-list"
@@ -667,7 +667,7 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "shopingListId"
+                        "name": "shoppingListId"
                     }
                 ],
                 "security": [
