@@ -24,7 +24,7 @@ const addItemInList = async (req, res) => {
             id: ingrId._id,
             messure: parseInt(messureItem[0]) + messureCount + ' ' + messureItem[1]
         }
-        const newIngrCount = user.shopingList.filter(item => item.id.toString() === ingrId._id.toString()).map(item => item.messure).findIndex(item => item.includes(messureName));
+        const newIngrCount = await user.shopingList.findIndex(item => item.id.toString() === ingrToShoppingList.id.toString() && item.messure.includes(messureName));
         await user.shopingList.splice(newIngrCount, 1, ingrToShoppingList);
         const addedToShoppingList = await User.findOneAndUpdate({ _id: id }, { shopingList: user.shopingList }, { new: true }).select({ shopingList: 1 })
         return res.status(200).json(addedToShoppingList);
