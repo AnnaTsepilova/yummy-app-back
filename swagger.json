@@ -48,6 +48,10 @@
         {
             "name": "Unsubscribe",
             "description": "Unsubscribe endpoints"
+        },
+        {
+            "name": "Popular-recipe",
+            "description": "Popular-recipe endpoints"
         }
     ],
     "paths": {
@@ -672,7 +676,7 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "add to shoping-list",
+                    "description": "delete from shoping-list",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -920,6 +924,36 @@
                     }
                 }
             }
+        },
+        "/popular-recipe/": {
+            "get": {
+                "tags": [
+                    "Popular-recipe"
+                ],
+                "summary": "Get Popular recipes",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetRecipesByIngredientResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1136,7 +1170,7 @@
                     "cockingTime": {
                         "type": "string",
                         "description": "coock time",
-                        "example": "45min"
+                        "example": "45"
                     },
                     "ingredients": {
                         "type": "array",
@@ -1156,13 +1190,13 @@
                         "description": "ingredients",
                         "example": [
                             {
-                                "avocado": "1 lim"
+                                "640c2dd963a319ea671e365b": "1 lim"
                             },
                             {
-                                "lime": "30 ml"
+                                "640c2dd963a319ea671e365c": "30 ml"
                             },
                             {
-                                "lemon": "40 ml"
+                                "640c2dd963a319ea671e365f": "40 ml"
                             }
                         ]
                     },
@@ -1275,11 +1309,71 @@
                 ]
             },
             "userRecipesResponse": {
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "example": "Beef,Breakfast,Chicken,Dessert,Goat,Lamb,Miscellaneous,Pasta,Pork,Seafood,Side,Starter,Vegan,Vegeterian"
-                }
+                "type": "object",
+                "properties": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "category": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "time": {
+                                "type": "string"
+                            },
+                            "favorites": {
+                                "type": "array"
+                            },
+                            "likes": {
+                                "type": "array"
+                            },
+                            "ingredients": {
+                                "type": "array"
+                            },
+                            "tags": {
+                                "type": "array"
+                            },
+                            "owner": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "_id": "642bf492fe5f07d9bb6fd2d1",
+                        "title": "bestRecipe",
+                        "category": "Breakfast",
+                        "description": "Bebea",
+                        "time": "40min",
+                        "favorites": [],
+                        "likes": [],
+                        "ingredients": [
+                            {
+                                "id": "640c2dd963a319ea671e365b",
+                                "measure": "20 ml"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e365c",
+                                "measure": "30 ml"
+                            }
+                        ],
+                        "tags": [],
+                        "owner": "6429a13d7a96117fcb3e2c22",
+                        "createdAt": "2023-04-04T09:57:38.520Z",
+                        "updatedAt": "2023-04-04T09:57:38.520Z",
+                        "__v": 0
+                    }
+                ]
             },
             "recipesByIdResponse": {
                 "type": "object",
