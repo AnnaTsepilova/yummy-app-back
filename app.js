@@ -4,15 +4,16 @@ const cors = require("cors");
 
 require("dotenv").config();
 
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 const favoriteRouter = require("./routes/api/favorite");
 const ingredientsRouter = require("./routes/api/ingredients");
 const recipesRouter = require("./routes/api/recipes");
 const unsubscribeRoutes = require("./routes/api/unsubscribe");
 const subscribeRoutes = require("./routes/api/subscribe");
 const authRouter = require("./routes/api/auth");
-const shopingListRouter = require('./routes/api/shopping-list')
+const shopingListRouter = require("./routes/api/shopping-list");
+const popularRecipeRoute = require("./routes/api/popular-recipe");
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -21,6 +22,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/popular-recipe", popularRecipeRoute);
 app.use("/api/favorite", favoriteRouter);
 app.use("/api/ingredients", ingredientsRouter);
 app.use("/api/recipes", recipesRouter);
