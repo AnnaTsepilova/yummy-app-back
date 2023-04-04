@@ -1309,11 +1309,71 @@
                 ]
             },
             "userRecipesResponse": {
-                "type": "array",
-                "items": {
-                    "type": "string",
-                    "example": "Beef,Breakfast,Chicken,Dessert,Goat,Lamb,Miscellaneous,Pasta,Pork,Seafood,Side,Starter,Vegan,Vegeterian"
-                }
+                "type": "object",
+                "properties": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "category": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "time": {
+                                "type": "string"
+                            },
+                            "favorites": {
+                                "type": "array"
+                            },
+                            "likes": {
+                                "type": "array"
+                            },
+                            "ingredients": {
+                                "type": "array"
+                            },
+                            "tags": {
+                                "type": "array"
+                            },
+                            "owner": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "_id": "642bf492fe5f07d9bb6fd2d1",
+                        "title": "bestRecipe",
+                        "category": "Breakfast",
+                        "description": "Bebea",
+                        "time": "40min",
+                        "favorites": [],
+                        "likes": [],
+                        "ingredients": [
+                            {
+                                "id": "640c2dd963a319ea671e365b",
+                                "measure": "20 ml"
+                            },
+                            {
+                                "id": "640c2dd963a319ea671e365c",
+                                "measure": "30 ml"
+                            }
+                        ],
+                        "tags": [],
+                        "owner": "6429a13d7a96117fcb3e2c22",
+                        "createdAt": "2023-04-04T09:57:38.520Z",
+                        "updatedAt": "2023-04-04T09:57:38.520Z",
+                        "__v": 0
+                    }
+                ]
             },
             "recipesByIdResponse": {
                 "type": "object",

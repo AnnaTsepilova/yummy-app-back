@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaType, SchemaTypes } = require('mongoose');
 
 const recipeSchema = new Schema({
     title: { type: String },
@@ -18,7 +18,11 @@ const recipeSchema = new Schema({
     youtube: { type: String },
     tags: [{ type: String }],
     createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
+    updatedAt: { type: Date, default: Date.now },
+    owner: {
+        type: SchemaTypes.ObjectId,
+        ref: 'user',
+    }
 });
 
 const Recipe = model('Recipe', recipeSchema);
