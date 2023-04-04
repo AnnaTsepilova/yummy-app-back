@@ -48,6 +48,10 @@
         {
             "name": "Unsubscribe",
             "description": "Unsubscribe endpoints"
+        },
+        {
+            "name": "Popular-recipe",
+            "description": "Popular-recipe endpoints"
         }
     ],
     "paths": {
@@ -672,7 +676,7 @@
                     }
                 ],
                 "requestBody": {
-                    "description": "add to shoping-list",
+                    "description": "delete from shoping-list",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -913,6 +917,36 @@
                     "200": {
                         "description": "unSubscription Succesfull",
                         "content": {}
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/popular-recipe/": {
+            "get": {
+                "tags": [
+                    "Popular-recipe"
+                ],
+                "summary": "Get Popular recipes",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetRecipesByIngredientResponse"
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized",
