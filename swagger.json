@@ -62,11 +62,6 @@
                 ],
                 "summary": "User registration",
                 "parameters": [],
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
                 "requestBody": {
                     "description": "Registration's object",
                     "required": true,
@@ -107,11 +102,6 @@
                 ],
                 "summary": "User login",
                 "parameters": [],
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
                 "requestBody": {
                     "description": "Login's object",
                     "required": true,
@@ -164,6 +154,51 @@
                     },
                     "401": {
                         "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User refresh",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "refresh's object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RefreshRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RefreshResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request (invalid request body)",
+                        "content": {}
+                    },
+                    "401": {
+                        "description": "Not authorized",
                         "content": {}
                     }
                 }
@@ -1029,10 +1064,20 @@
                 "type": "object",
                 "items": {
                     "properties": {
-                        "token": {
+                        "accessToken": {
                             "type": "string",
                             "description": "User's token",
                             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg"
+                        },
+                        "refreshToken": {
+                            "type": "string",
+                            "description": "User's token",
+                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg"
+                        },
+                        "sid": {
+                            "type": "string",
+                            "description": "User's token",
+                            "example": "642d5a09012f6d655ccb61cb"
                         },
                         "email": {
                             "type": "string",
@@ -1042,9 +1087,49 @@
                     }
                 },
                 "example": {
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg",
+                    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg",
+                    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg",
+                    "sid": "642d5a09012f6d655ccb61cb",
                     "user": {
                         "email": "1@gmail.com"
+                    }
+                }
+            },
+            "RefreshRequest": {
+                "type": "object",
+                "required": [
+                    "sid"
+                ],
+                "properties": {
+                    "sid": {
+                        "type": "string",
+                        "description": "User's email",
+                        "example": "642d5802984e8df64bdd6314"
+                    }
+                }
+            },
+            "RefreshResponse": {
+                "type": "object",
+                "required": [
+                    "newAccessToken",
+                    "newRefreshToken",
+                    "newSid"
+                ],
+                "properties": {
+                    "newAccessToken": {
+                        "type": "string",
+                        "description": "User's newAccessToken",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjlhMTNkN2E5NjExN2ZjYjNlMmMyMiIsInNpZCI6IjY0MmQ1ODAyOTg0ZThkZjY0YmRkNjMxNCIsImlhdCI6MTY4MDY5MzI1MCwiZXhwIjoxNjgwNjk2ODUwfQ.ojIcuEeVE-rqBN0IrVw5Uom0HLEAy5a7g5H0w-QvtFk"
+                    },
+                    "newRefreshToken": {
+                        "type": "string",
+                        "description": "User's newRefreshToken",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjlhMTNkN2E5NjExN2ZjYjNlMmMyMiIsInNpZCI6IjY0MmQ1ODAyOTg0ZThkZjY0YmRkNjMxNCIsImlhdCI6MTY4MDY5MzI1MCwiZXhwIjoxNjgzMjg1MjUwfQ.H3dzV4ly37vsfqqj0ZXj1IPPbpU8OOVLxI2pBe19qaw"
+                    },
+                    "newSid": {
+                        "type": "string",
+                        "description": "User's newSid",
+                        "example": "642d5802984e8df64bdd6314"
                     }
                 }
             },

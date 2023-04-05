@@ -14,10 +14,6 @@ const userSchema = Schema({
     required: [true, 'Email is required'],
     unique: true,
   },
-  token: {
-    type: String,
-    default: null,
-  },
   shopingList: {
     type: Array
   },
