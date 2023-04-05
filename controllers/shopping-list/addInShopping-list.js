@@ -10,7 +10,11 @@ const addItemInList = async (req, res) => {
     const ingrCount = Object.values(req.body).join('');
     const user = await User.findById(id);
     const ingrId = await Ingredients.findOne({ _id: ingrName }).select({ _id: 1 });
+    const ingr = await Ingredients.findOne({ _id: ingrName }).select({ ttl: 1, thb: 1 });
+    console.log(ingr);
     const ingrToShoppingList = {
+        ttl: ingr.ttl,
+        thb: ingr.thb,
         id: ingrId._id,
         messure: ingrCount
     }
@@ -21,6 +25,8 @@ const addItemInList = async (req, res) => {
         const messureCount = parseInt(ingrCount.split(' ')[0]);
         const messureItem = messure.join('').split(' ');
         const ingrToShoppingList = {
+            ttl: ingr.ttl,
+            thb: ingr.thb,
             id: ingrId._id,
             messure: parseInt(messureItem[0]) + messureCount + ' ' + messureItem[1]
         }
