@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post("/signup", validateBody(signupSchema), ctrlWrapper(ctrl.signup));
 
-router.post("/signin", validateBody(signinSchema), ctrlWrapper(ctrl.signin));
+router.post("/signin", /* validateBody(signinSchema), */ ctrlWrapper(ctrl.signin));
 
 router.post("/refresh", authenticate, ctrlWrapper(ctrl.refreshTokens));
 
