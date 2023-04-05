@@ -2031,7 +2031,7 @@
                             "type": "string",
                             "description": "ingredient's id"
                         },
-                        "messure": {
+                        "measure": {
                             "type": "string",
                             "description": "ingredient's messure"
                         }
@@ -2042,13 +2042,13 @@
                         "ttl": "Cucumber",
                         "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
                         "id": "640c2dd963a319ea671e3652c",
-                        "messure": "100 li"
+                        "measure": "100 li"
                     },
                     {
                         "ttl": "Basmati Rice",
                         "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
                         "id": "640c2dd963a319ea671e3669",
-                        "messure": "100 be"
+                        "measure": "100 be"
                     }
                 ]
             },
@@ -2086,7 +2086,7 @@
                                 "type": "string",
                                 "description": "ingredient's id"
                             },
-                            "messure": {
+                            "measure": {
                                 "type": "string",
                                 "description": "ingredient's messure"
                             }
@@ -2098,26 +2098,26 @@
                         "ttl": "Cucumber",
                         "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
                         "id": "640c2dd963a319ea671e3652c",
-                        "messure": "100 li"
+                        "measure": "100 li"
                     },
                     {
                         "ttl": "Basmati Rice",
                         "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
                         "id": "640c2dd963a319ea671e3669",
-                        "messure": "100 be"
+                        "measure": "100 be"
                     }
                 ]
             },
             "removeFromShoping-listRequest": {
                 "type": "object",
                 "properties": {
-                    "messure": {
+                    "measure": {
                         "type": "string",
                         "description": "ingredient's messure"
                     }
                 },
                 "example": {
-                    "messure": "150 li"
+                    "measure": "150 li"
                 }
             },
             "GetIngredientsListResponse": {
