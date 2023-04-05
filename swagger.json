@@ -2019,6 +2019,14 @@
                 "items": {
                     "type": "object",
                     "properties": {
+                        "ttl": {
+                            "type": "string",
+                            "description": "ingredient's title"
+                        },
+                        "thb": {
+                            "type": "string",
+                            "description": "ingredient's img"
+                        },
                         "id": {
                             "type": "string",
                             "description": "ingredient's id"
@@ -2031,12 +2039,16 @@
                 },
                 "example": [
                     {
-                        "id": "640c2dd963a319ea671e365b",
-                        "messure": "150 li"
+                        "ttl": "Cucumber",
+                        "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
+                        "id": "640c2dd963a319ea671e3652c",
+                        "messure": "100 li"
                     },
                     {
-                        "id": "640c2dd963a319ea671e365b",
-                        "messure": "60 ka"
+                        "ttl": "Basmati Rice",
+                        "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
+                        "id": "640c2dd963a319ea671e3669",
+                        "messure": "100 be"
                     }
                 ]
             },
@@ -2062,6 +2074,14 @@
                     "items": {
                         "type": "object",
                         "properties": {
+                            "ttl": {
+                                "type": "string",
+                                "description": "ingredient's title"
+                            },
+                            "thb": {
+                                "type": "string",
+                                "description": "ingredient's img"
+                            },
                             "id": {
                                 "type": "string",
                                 "description": "ingredient's id"
@@ -2075,12 +2095,16 @@
                 },
                 "example": [
                     {
-                        "id": "640c2dd963a319ea671e365b",
-                        "messure": "150 li"
+                        "ttl": "Cucumber",
+                        "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
+                        "id": "640c2dd963a319ea671e3652c",
+                        "messure": "100 li"
                     },
                     {
-                        "id": "640c2dd963a319ea671e365b",
-                        "messure": "60 ka"
+                        "ttl": "Basmati Rice",
+                        "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
+                        "id": "640c2dd963a319ea671e3669",
+                        "messure": "100 be"
                     }
                 ]
             },
