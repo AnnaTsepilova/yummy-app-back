@@ -484,13 +484,31 @@
                 }
             }
         },
-        "/recipes/search": {
-            "post": {
+        "/recipes/search/recipes": {
+            "get": {
                 "tags": [
                     "Recipes"
                 ],
                 "summary": "Search recipe by title or ingredient",
                 "parameters": [
+                    {
+                        "in": "query",
+                        "name": "title",
+                        "schema": {
+                            "type": "string",
+                            "example": "beef"
+                        },
+                        "description": "search for title"
+                    },
+                    {
+                        "in": "query",
+                        "name": "ingredient",
+                        "schema": {
+                            "type": "string",
+                            "example": "chiken"
+                        },
+                        "description": "search for ingredient"
+                    },
                     {
                         "in": "query",
                         "name": "page",
@@ -507,17 +525,6 @@
                         "Bearer": []
                     }
                 ],
-                "requestBody": {
-                    "description": "search recipe by name or ingredient",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/searchRequest"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -1204,25 +1211,6 @@
                         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDQxMjczMiwiZXhwIjoxNjgwNDE2MzMyfQ.Hc5VZE9Fn15unLh4aiWCKykNc03ZGfqc11tFZ3ISakw",
                         "createdAt": "2023-04-01T14:03:55.361Z",
                         "updatedAt": "2023-04-02T05:18:52.374Z"
-                    }
-                }
-            },
-            "searchRequest": {
-                "type": "object",
-                "required": [
-                    "value",
-                    "flag"
-                ],
-                "properties": {
-                    "value": {
-                        "type": "string",
-                        "description": "recipe's or ingredient's name",
-                        "example": "beef || Chicken"
-                    },
-                    "flag": {
-                        "type": "string",
-                        "description": "flag for search",
-                        "example": "title || ingredient"
                     }
                 }
             },
