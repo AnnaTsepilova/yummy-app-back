@@ -2,6 +2,7 @@ const User = require("../models/user")
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = process.env;
 const { Unauthorized } = require('http-errors');
+const Session = require("../models/session");
 
 const authenticate = async (req, _, next) => {
   try {
@@ -11,12 +12,17 @@ const authenticate = async (req, _, next) => {
     }
     const token = authorization.split(' ')[1];
     try {
-      const { id } = jwt.verify(token, SECRET_KEY);
+      const { id, sid } = jwt.verify(token, SECRET_KEY);
       const user = await User.findById(id);
-      if (!user || !user.token) {
+      const session = await Session.findById(sid)
+      if (!user) {
         throw Unauthorized("Not authorized");
       }
+      if (!session) {
+        throw Unauthorized('Invalid session')
+      }
       req.user = user;
+      req.session = session;
       next();
     } catch (error) {
       throw Unauthorized("Not authorized");

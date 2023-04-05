@@ -2,6 +2,7 @@ const User = require("../../models/user");
 const { Unauthorized } = require('http-errors');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Session = require("../../models/session");
 const { SECRET_KEY } = process.env;
 
 const signin = async (req, res) => {
@@ -16,15 +17,16 @@ const signin = async (req, res) => {
   if (!passCompare) {
     throw new Unauthorized('Email or password is wrong');
   };
+  const newSession = await Session.create({
+    uid: user._id
+  })
+  const accessToken = jwt.sign({ id: user._id, sid: newSession._id }, SECRET_KEY, { expiresIn: "1h" });
+  const refreshToken = jwt.sign({ id: user._id, sid: newSession._id }, SECRET_KEY, { expiresIn: "30d" });
 
-  const payload = {
-    id: user._id,
-  };
-
-  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "100h" });
-  await User.findByIdAndUpdate(user._id, { token });
   res.json({
-    token,
+    accessToken,
+    refreshToken,
+    sid: newSession._id,
     user: {
       email: user.email,
     }

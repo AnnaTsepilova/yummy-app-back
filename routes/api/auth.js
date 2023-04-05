@@ -10,6 +10,8 @@ router.post("/signup", validateBody(signupSchema), ctrlWrapper(ctrl.signup));
 
 router.post("/signin", /* validateBody(signinSchema), */ ctrlWrapper(ctrl.signin));
 
+router.post("/refresh", authenticate, ctrlWrapper(ctrl.refreshTokens));
+
 router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
 router.get("/:userId", authenticate, ctrlWrapper(ctrl.getById))
