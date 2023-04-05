@@ -12,7 +12,7 @@ router.post("/signin", /* validateBody(signinSchema), */ ctrlWrapper(ctrl.signin
 
 router.post("/refresh", authenticate, ctrlWrapper(ctrl.refreshTokens));
 
-router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
+router.post("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
 router.get("/:userId", authenticate, ctrlWrapper(ctrl.getById))
 
