@@ -5,7 +5,7 @@ const removeItemFromList = async (req, res) => {
     const { id } = req.user;
     const { shoppingListId } = req.params;
     const user = await User.findById(id);
-    const findShopingListIndex = user.shopingList.filter(item => item.id.toString() === shopingListId.toString()).map(item => item.messure).findIndex(item => item === req.body.messure);
+    const findShopingListIndex = user.shopingList.filter(item => item.id.toString() === shoppingListId.toString()).map(item => item.messure).findIndex(item => item === req.body.messure);
     if (findShopingListIndex === -1) {
         throw new NotFound(`id ${shoppingListId} not found`);
     }

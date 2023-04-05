@@ -16,7 +16,7 @@ const addItemInList = async (req, res) => {
     }
     const messureName = ingrCount.split(' ')[1];
     const checkIds = user.shopingList.filter(item => item.id.toString() === ingrId._id.toString())
-    const messure = user.shopingList.filter(item => item.id.toString() === ingrId._id.toString()).filter(item => item.messure.includes(messureName)).map(item => item.messure);
+    const messure = user.shopingList.filter(item => item.id.toString() === ingrId._id.toString()).filter(item => item.messure.split(' ')[1] === messureName).map(item => item.messure);
     if (checkIds.length > 0 && messure.length > 0) {
         const messureCount = parseInt(ingrCount.split(' ')[0]);
         const messureItem = messure.join('').split(' ');
@@ -24,7 +24,7 @@ const addItemInList = async (req, res) => {
             id: ingrId._id,
             messure: parseInt(messureItem[0]) + messureCount + ' ' + messureItem[1]
         }
-        const newIngrCount = await user.shopingList.findIndex(item => item.id.toString() === ingrToShoppingList.id.toString() && item.messure.includes(messureName));
+        const newIngrCount = await user.shopingList.findIndex(item => item.id.toString() === ingrToShoppingList.id.toString() && item.messure.split(' ')[1] === messureName);
         await user.shopingList.splice(newIngrCount, 1, ingrToShoppingList);
         const addedToShoppingList = await User.findOneAndUpdate({ _id: id }, { shopingList: user.shopingList }, { new: true }).select({ shopingList: 1 })
         return res.status(200).json(addedToShoppingList);
