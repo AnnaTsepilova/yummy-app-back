@@ -7,7 +7,15 @@ const getById = async (req, res) => {
   if (!result) {
     throw new NotFound("Not found");
   }
-  res.json(result);
+  const response = {
+    id: result._id,
+    name: result.name,
+    email: result.email,
+    shopingList: result.shopingList,
+    createdAt: result.createdAt,
+    updatedAt: result.updatedAt
+  }
+  res.json(response);
 }
 
 module.exports = getById;
