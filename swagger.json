@@ -710,6 +710,11 @@
                     {
                         "in": "path",
                         "name": "shoppingListId"
+                    },
+                    {
+                        "in": "query",
+                        "name": "measure",
+                        "example": "150 lm"
                     }
                 ],
                 "security": [
@@ -717,17 +722,6 @@
                         "Bearer": []
                     }
                 ],
-                "requestBody": {
-                    "description": "delete from shoping-list",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/removeFromShoping-listRequest"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "success",
@@ -1034,11 +1028,6 @@
                             "description": "User's email",
                             "format": "email"
                         },
-                        "id": {
-                            "type": "string",
-                            "description": "User's id",
-                            "example": "642d5a09012f6d655ccb61cb"
-                        },
                         "name": {
                             "type": "string",
                             "description": "User's name",
@@ -1048,7 +1037,6 @@
                 },
                 "example": {
                     "user": {
-                        "id": "642d5a09012f6d655ccb61cb",
                         "email": "1@gmail.com",
                         "name": "Ivan"
                     }
@@ -1092,11 +1080,6 @@
                             "description": "User's token",
                             "example": "642d5a09012f6d655ccb61cb"
                         },
-                        "id": {
-                            "type": "string",
-                            "description": "User's id",
-                            "example": "642d5a09012f6d655ccb61cb"
-                        },
                         "email": {
                             "type": "string",
                             "description": "User's email",
@@ -1109,7 +1092,6 @@
                     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg",
                     "sid": "642d5a09012f6d655ccb61cb",
                     "user": {
-                        "id": "642e7d4ea3b51db865230b96",
                         "email": "1@gmail.com"
                     }
                 }
@@ -1299,7 +1281,7 @@
             "searchResponse": {
                 "type": "object",
                 "properties": {
-                    "results": {
+                    "finded": {
                         "type": "array",
                         "items": {
                             "type": "object",
@@ -1326,7 +1308,7 @@
                 },
                 "example": [
                     {
-                        "results": [
+                        "finded": [
                             {
                                 "_id": "640cd5ac2d9fecf12e88981d",
                                 "title": "Beef Sunday Roast",
@@ -2107,18 +2089,6 @@
                         "measure": "100 be"
                     }
                 ]
-            },
-            "removeFromShoping-listRequest": {
-                "type": "object",
-                "properties": {
-                    "measure": {
-                        "type": "string",
-                        "description": "ingredient's messure"
-                    }
-                },
-                "example": {
-                    "measure": "150 li"
-                }
             },
             "GetIngredientsListResponse": {
                 "type": "array",
