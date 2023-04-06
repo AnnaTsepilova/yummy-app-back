@@ -23,11 +23,13 @@ const addItemInList = async (req, res) => {
     if (checkIds.length > 0 && messure.length > 0) {
         const messureCount = parseInt(ingrCount.split(' ')[0]);
         const messureItem = messure.join('').split(' ');
+        console.log(messureItem[1])
         const ingrToShoppingList = {
             ttl: ingr.ttl,
             thb: ingr.thb,
             id: ingrId._id,
-            measure: parseInt(messureItem[0]) + messureCount + ' ' + messureItem[1]
+            measure: !messureItem[1] ? parseInt(messureItem[0]) + messureCount + '' : parseInt(messureItem[0]) + messureCount + ' ' + messureItem[1]
+
         }
         const newIngrCount = await user.shopingList.findIndex(item => item.id.toString() === ingrToShoppingList.id.toString() && item.measure?.split(' ')[1] === messureName);
         await user.shopingList.splice(newIngrCount, 1, ingrToShoppingList);
