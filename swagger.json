@@ -1023,6 +1023,11 @@
                 "type": "object",
                 "items": {
                     "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "User's id",
+                            "example": "642ebdb026f983e8cf4dae2b"
+                        },
                         "email": {
                             "type": "string",
                             "description": "User's email",
@@ -1037,6 +1042,7 @@
                 },
                 "example": {
                     "user": {
+                        "id": "642ebdb026f983e8cf4dae2b",
                         "email": "1@gmail.com",
                         "name": "Ivan"
                     }
@@ -1080,6 +1086,11 @@
                             "description": "User's token",
                             "example": "642d5a09012f6d655ccb61cb"
                         },
+                        "id": {
+                            "type": "string",
+                            "description": "User's id",
+                            "example": "642ebdb026f983e8cf4dae2b"
+                        },
                         "email": {
                             "type": "string",
                             "description": "User's email",
@@ -1092,6 +1103,7 @@
                     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg",
                     "sid": "642d5a09012f6d655ccb61cb",
                     "user": {
+                        "id": "642ebdb026f983e8cf4dae2b",
                         "email": "1@gmail.com"
                     }
                 }
