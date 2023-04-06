@@ -1034,6 +1034,11 @@
                             "description": "User's email",
                             "format": "email"
                         },
+                        "id": {
+                            "type": "string",
+                            "description": "User's id",
+                            "example": "642d5a09012f6d655ccb61cb"
+                        },
                         "name": {
                             "type": "string",
                             "description": "User's name",
@@ -1043,6 +1048,7 @@
                 },
                 "example": {
                     "user": {
+                        "id": "642d5a09012f6d655ccb61cb",
                         "email": "1@gmail.com",
                         "name": "Ivan"
                     }
@@ -1086,6 +1092,11 @@
                             "description": "User's token",
                             "example": "642d5a09012f6d655ccb61cb"
                         },
+                        "id": {
+                            "type": "string",
+                            "description": "User's id",
+                            "example": "642d5a09012f6d655ccb61cb"
+                        },
                         "email": {
                             "type": "string",
                             "description": "User's email",
@@ -1098,6 +1109,7 @@
                     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjgzOWNiYTJhZmQ1ZjRjNmEyZDFkYSIsImlhdCI6MTY4MDM1ODYxMSwiZXhwIjoxNjgwMzYyMjExfQ.fo57no_hplqYNZPj0paMWSl68bhv1tteWr_Y5Tw6KUg",
                     "sid": "642d5a09012f6d655ccb61cb",
                     "user": {
+                        "id": "642e7d4ea3b51db865230b96",
                         "email": "1@gmail.com"
                     }
                 }
@@ -1287,7 +1299,7 @@
             "searchResponse": {
                 "type": "object",
                 "properties": {
-                    "finded": {
+                    "results": {
                         "type": "array",
                         "items": {
                             "type": "object",
@@ -1314,7 +1326,7 @@
                 },
                 "example": [
                     {
-                        "finded": [
+                        "results": [
                             {
                                 "_id": "640cd5ac2d9fecf12e88981d",
                                 "title": "Beef Sunday Roast",

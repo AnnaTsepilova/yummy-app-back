@@ -12,10 +12,10 @@ const searchRecipe = async (req, res) => {
     skip = parseInt(page) === 1 ? 0 : parseInt(page) * limit - limitNumber;
     if (req.query.title) {
         const pagination = await Recipe.find({ title: { $regex: req.query.title, $options: "i" } }).select({ title: 1, preview: 1 });
-        const finded = await Recipe.find({ title: { $regex: req.query.title, $options: "i" } }).select({ title: 1, preview: 1 }).skip(skip).limit(limitNumber);
+        const results = await Recipe.find({ title: { $regex: req.query.title, $options: "i" } }).select({ title: 1, preview: 1 }).skip(skip).limit(limitNumber);
         const totalHits = pagination.length;
-        const hits = finded.length;
-        return res.status(200).json({ finded, totalHits, hits });
+        const hits = results.length;
+        return res.status(200).json({ results, totalHits, hits });
     }
     const ingredient = await Ingredients.findOne({ ttl: { $regex: req.query.ingredient, $options: "i" } }).select({ _id: 1 });
     if (!ingredient) {
@@ -24,12 +24,12 @@ const searchRecipe = async (req, res) => {
     const pagination = await Recipe.find({
         ingredients: { $elemMatch: { id: ingredient._id } },
     })
-    const finded = await Recipe.find({
+    const results = await Recipe.find({
         ingredients: { $elemMatch: { id: ingredient._id } },
     }).select({ title: 1, preview: 1 }).skip(skip).limit(limitNumber);
     const totalHits = pagination.length;
-    const hits = finded.length;
-    return res.status(200).json({ finded, totalHits, hits });
+    const hits = results.length;
+    return res.status(200).json({ results, totalHits, hits });
 }
 
 module.exports = searchRecipe;
