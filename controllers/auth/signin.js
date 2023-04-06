@@ -28,6 +28,7 @@ const signin = async (req, res) => {
     refreshToken,
     sid: newSession._id,
     user: {
+      id: user._id,
       email: user.email,
     }
   });

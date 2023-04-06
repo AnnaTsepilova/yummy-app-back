@@ -12,6 +12,7 @@ const signup = async (req, res) => {
   const result = await User.create({ name, email, password: hashPassword, avatarURL });
   res.status(201).json({
     user: {
+      id: result._id,
       name: result.name,
       email: result.email,
     }
