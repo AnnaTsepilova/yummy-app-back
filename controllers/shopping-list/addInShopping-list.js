@@ -11,8 +11,8 @@ const addItemInList = async (req, res) => {
     const user = await User.findById(id);
     const ingrId = await Ingredients.findOne({ _id: ingrName }).select({ _id: 1 });
     const ingr = await Ingredients.findOne({ _id: ingrName }).select({ ttl: 1, thb: 1 });
-    const recipesId = await user.shopingList.filter(item => item.id.toString() === ingrName).map(item => item.recipesId.toString());
-    const check = recipesId.filter(item => item.includes(req.query.recipeId));
+    const recipesId = await user.shopingList.filter(item => item.id.toString() === ingrName).flatMap(item => item.recipesId);
+    const check = recipesId.filter(item => item === req.query.recipeId);
     if (check.length === 0) {
         recipesId.push(req.query.recipeId)
     }

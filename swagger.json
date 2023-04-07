@@ -721,6 +721,11 @@
                         "in": "query",
                         "name": "measure",
                         "example": "150 lm"
+                    },
+                    {
+                        "in": "query",
+                        "name": "recipeId",
+                        "example": "640cd5ac2d9fecf12e8897f6"
                     }
                 ],
                 "security": [
@@ -2061,7 +2066,8 @@
                         "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
                         "id": "640c2dd963a319ea671e3652c",
                         "recipesId": [
-                            "640cd5ac2d9fecf12e8897f5,640cd5ac2d9fecf12e8897f6"
+                            "640cd5ac2d9fecf12e8897f5",
+                            "640cd5ac2d9fecf12e8897f6"
                         ],
                         "measure": "100 li"
                     },
@@ -2070,7 +2076,8 @@
                         "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
                         "id": "640c2dd963a319ea671e3669",
                         "recipesId": [
-                            "640cd5ac2d9fecf12e8897f5,640cd5ac2d9fecf12e8897f6"
+                            "640cd5ac2d9fecf12e8897f5",
+                            "640cd5ac2d9fecf12e8897f6"
                         ],
                         "measure": "100 be"
                     }
@@ -2127,7 +2134,8 @@
                         "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
                         "id": "640c2dd963a319ea671e3652c",
                         "recipesId": [
-                            "640cd5ac2d9fecf12e8897f5,640cd5ac2d9fecf12e8897f6"
+                            "640cd5ac2d9fecf12e8897f5",
+                            "640cd5ac2d9fecf12e8897f6"
                         ],
                         "measure": "100 li"
                     },
@@ -2136,7 +2144,8 @@
                         "thb": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678564218/mlam2som4r46vlggwxhg.png",
                         "id": "640c2dd963a319ea671e3669",
                         "recipesId": [
-                            "640cd5ac2d9fecf12e8897f5,640cd5ac2d9fecf12e8897f6"
+                            "640cd5ac2d9fecf12e8897f5",
+                            "640cd5ac2d9fecf12e8897f6"
                         ],
                         "measure": "100 be"
                     }
