@@ -665,7 +665,13 @@
                     "Shoping-list"
                 ],
                 "summary": "add to shoping-list",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "recipeId",
+                        "example": "640cd5ac2d9fecf12e8897f3"
+                    }
+                ],
                 "security": [
                     {
                         "Bearer": []
