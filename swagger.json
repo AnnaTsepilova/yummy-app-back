@@ -460,7 +460,18 @@
                     "Recipes"
                 ],
                 "summary": "Get user's recipes",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "default": 1
+                        },
+                        "description": "The page number to retrieve"
+                    }
+                ],
                 "security": [
                     {
                         "Bearer": []
@@ -816,7 +827,18 @@
                     "Favorite"
                 ],
                 "summary": "Get favorite recipe's",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "default": 1
+                        },
+                        "description": "The page number to retrieve"
+                    }
+                ],
                 "security": [
                     {
                         "Bearer": []
@@ -1445,32 +1467,294 @@
                         }
                     }
                 },
-                "example": [
-                    {
-                        "_id": "642bf492fe5f07d9bb6fd2d1",
-                        "title": "bestRecipe",
-                        "category": "Breakfast",
-                        "description": "Bebea",
-                        "time": "40min",
-                        "favorites": [],
-                        "likes": [],
-                        "ingredients": [
-                            {
-                                "id": "640c2dd963a319ea671e365b",
-                                "measure": "20 ml"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e365c",
-                                "measure": "30 ml"
-                            }
-                        ],
-                        "tags": [],
-                        "owner": "6429a13d7a96117fcb3e2c22",
-                        "createdAt": "2023-04-04T09:57:38.520Z",
-                        "updatedAt": "2023-04-04T09:57:38.520Z",
-                        "__v": 0
-                    }
-                ]
+                "example": {
+                    "results": [
+                        {
+                            "_id": "640cd5ac2d9fecf12e8897f2",
+                            "title": "Honey Teriyaki Salmon",
+                            "category": "Seafood",
+                            "area": "Japanese",
+                            "instructions": "Mix all the ingredients in the Honey Teriyaki Glaze together. Whisk to blend well. Combine the salmon and the Glaze together.\r\n\r\nHeat up a skillet on medium-low heat. Add the oil, Pan-fry the salmon on both sides until it’s completely cooked inside and the glaze thickens.\r\n\r\nGarnish with sesame and serve immediately.",
+                            "description": "A Japanese-inspired dish made with salmon fillets, teriyaki sauce, honey, and sesame seeds.",
+                            "thumb": "https://www.themealdb.com/images/media/meals/xxyupu1468262513.jpg",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/yspi0frormix0zwglhos.jpg",
+                            "time": "25",
+                            "popularity": 0,
+                            "favorites": [
+                                "642ff99b6885e6eb80579a5a"
+                            ],
+                            "likes": [],
+                            "youtube": "https://www.youtube.com/watch?v=4MpYuaJsvRw",
+                            "tags": [
+                                "Fish",
+                                "Breakfast",
+                                "DateNight"
+                            ],
+                            "createdAt": "2023-03-11T19:25:33.240Z",
+                            "updatedAt": "2023-03-22T11:58:16.672Z",
+                            "ingredients": [
+                                {
+                                    "id": "640c2dd963a319ea671e365c",
+                                    "measure": "1 lb"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e372c",
+                                    "measure": "1 tablespoon"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e376c",
+                                    "measure": "2 tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e375c",
+                                    "measure": "2 tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3764",
+                                    "measure": "4 tablespoons"
+                                }
+                            ]
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e8897f5",
+                            "title": "Mediterranean Pasta Salad",
+                            "category": "Seafood",
+                            "area": "Italian",
+                            "instructions": "Bring a large saucepan of salted water to the boil\r\nAdd the pasta, stir once and cook for about 10 minutes or as directed on the packet.\r\nMeanwhile, wash the tomatoes and cut into quarters. Slice the olives. Wash the basil.\r\nPut the tomatoes into a salad bowl and tear the basil leaves over them. Add a tablespoon of olive oil and mix.\r\nWhen the pasta is ready, drain into a colander and run cold water over it to cool it quickly.\r\nToss the pasta into the salad bowl with the tomatoes and basil.\r\nAdd the sliced olives, drained mozzarella balls, and chunks of tuna. Mix well and let the salad rest for at least half an hour to allow the flavours to mingle.\r\nSprinkle the pasta with a generous grind of black pepper and drizzle with the remaining olive oil just before serving.",
+                            "description": "A salad made with pasta, vegetables (such as tomatoes, cucumbers, and olives), feta cheese, and a dressing made with olive oil and lemon juice.",
+                            "thumb": "https://www.themealdb.com/images/media/meals/wvqpwt1468339226.jpg",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560402/mwtf7uqrnsxvlpjqtslc.jpg",
+                            "time": "27",
+                            "popularity": 1,
+                            "favorites": [
+                                "6418d54b63d5b7b1e97c6359",
+                                "642ff99b6885e6eb80579a5a"
+                            ],
+                            "likes": [
+                                "6418d54b63d5b7b1e97c6359"
+                            ],
+                            "youtube": "https://www.youtube.com/watch?v=e52IL8zYmaE",
+                            "tags": [
+                                "Pasta",
+                                "Baking"
+                            ],
+                            "createdAt": "2023-03-11T19:25:33.240Z",
+                            "updatedAt": "2023-03-22T11:58:24.610Z",
+                            "ingredients": [
+                                {
+                                    "id": "640c2dd963a319ea671e3724",
+                                    "measure": "200 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3663",
+                                    "measure": "250 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36dd",
+                                    "measure": "1  bunch"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36cf",
+                                    "measure": "350 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36cd",
+                                    "measure": "3  tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36f3",
+                                    "measure": "40 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3781",
+                                    "measure": "200 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e375e",
+                                    "measure": "to taste"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e373f",
+                                    "measure": "to taste"
+                                }
+                            ]
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e8897f8",
+                            "title": "Irish stew",
+                            "category": "Beef",
+                            "area": "Irish",
+                            "instructions": "Heat the oven to 180C/350F/gas mark 4. Drain and rinse the soaked wheat, put it in a medium pan with lots of water, bring to a boil and simmer for an hour, until cooked. Drain and set aside.\r\n\r\nSeason the lamb with a teaspoon of salt and some black pepper. Put one tablespoon of oil in a large, deep sauté pan for which you have a lid; place on a medium-high heat. Add some of the lamb – don't overcrowd the pan – and sear for four minutes on all sides. Transfer to a bowl, and repeat with the remaining lamb, adding oil as needed.\r\n\r\nLower the heat to medium and add a tablespoon of oil to the pan. Add the shallots and fry for four minutes, until caramelised. Tip these into the lamb bowl, and repeat with the remaining vegetables until they are all nice and brown, adding more oil as you need it.\r\n\r\nOnce all the vegetables are seared and removed from the pan, add the wine along with the sugar, herbs, a teaspoon of salt and a good grind of black pepper. Boil on a high heat for about three minutes.\r\n\r\nTip the lamb, vegetables and whole wheat back into the pot, and add the stock. Cover and boil for five minutes, then transfer to the oven for an hour and a half.\r\n\r\nRemove the stew from the oven and check the liquid; if there is a lot, remove the lid and boil for a few minutes.",
+                            "description": "A traditional Irish dish made with lamb, potatoes, carrots, onions, and herbs, cooked in a broth or gravy.",
+                            "thumb": "https://www.themealdb.com/images/media/meals/sxxpst1468569714.jpg",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/kknfjaqupiqhufj5kspx.jpg",
+                            "time": "160",
+                            "popularity": 0,
+                            "favorites": [
+                                "641ab80cdf4a1f25b1611694",
+                                "642ff99b6885e6eb80579a5a"
+                            ],
+                            "likes": [],
+                            "youtube": "https://www.youtube.com/watch?v=kYH2qJXnSMo",
+                            "tags": [
+                                "Stew",
+                                "Meat"
+                            ],
+                            "createdAt": "2023-03-11T19:25:33.240Z",
+                            "updatedAt": "2023-03-23T10:28:47.062Z",
+                            "ingredients": [
+                                {
+                                    "id": "640c2dd963a319ea671e3796",
+                                    "measure": "300g soaked overnight in water"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e370c",
+                                    "measure": "2kg cut into 3cm cubes"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e372c",
+                                    "measure": "120ml"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3765",
+                                    "measure": "24 Skinned"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3684",
+                                    "measure": "4 large"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3784",
+                                    "measure": "2"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3689",
+                                    "measure": "1"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e368d",
+                                    "measure": "350g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3794",
+                                    "measure": "150ml"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3687",
+                                    "measure": "1 tsp"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36de",
+                                    "measure": "4 sprigs"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3731",
+                                    "measure": "4 sprigs"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3696",
+                                    "measure": "450ml"
+                                }
+                            ]
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e889807",
+                            "title": "Chicken Alfredo Primavera",
+                            "category": "Chicken",
+                            "area": "Italian",
+                            "instructions": "Heat 1 tablespoon of butter and 2 tablespoons of olive oil in a large skillet over medium-high heat. Season both sides of each chicken breast with seasoned salt and a pinch of pepper. Add the chicken to the skillet and cook for 5-7 minutes on each side, or until cooked through.  While the chicken is cooking, bring a large pot of water to a boil. Season the boiling water with a few generous pinches of kosher salt. Add the pasta and give it a stir. Cook, stirring occasionally, until al dente, about 12 minutes. Reserve 1/2 cup of  pasta water before draining the pasta.  Remove the chicken from the pan and transfer it to a cutting board; allow it to rest. Turn the heat down to medium and dd the remaining 1 tablespoon of butter and olive oil to the same pan you used to cook the chicken. Add the veggies (minus the garlic) and red pepper flakes to the pan and stir to coat with the oil and butter (refrain from seasoning with salt until the veggies are finished browning). Cook, stirring often, until the veggies are tender, about 5 minutes. Add the garlic and a generous pinch of salt and pepper to the pan and cook for 1 minute.  Deglaze the pan with the white wine. Continue to cook until the wine has reduced by half, about 3 minutes. Stir in the milk, heavy cream, and reserved pasta water. Bring the mixture to a gentle boil and allow to simmer and reduce for 2-3 minutes. Turn off the heat and add the Parmesan cheese and cooked pasta. Season with salt and pepper to taste. Garnish with Parmesan cheese and chopped parsley, if desired. ",
+                            "description": "A creamy and satisfying pasta dish made with chicken, vegetables, and Alfredo sauce.",
+                            "thumb": "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560402/anj8pdqnhdqoxmh0kgnm.jpg",
+                            "time": "40",
+                            "popularity": 0,
+                            "favorites": [
+                                "642ff99b6885e6eb80579a5a"
+                            ],
+                            "likes": [],
+                            "youtube": "https://www.youtube.com/watch?v=qCIbq8HywpQ",
+                            "tags": [
+                                "Pasta",
+                                "Meat",
+                                "Dairy"
+                            ],
+                            "createdAt": "2023-03-11T19:25:33.240Z",
+                            "updatedAt": "2023-03-20T12:14:40.854Z",
+                            "ingredients": [
+                                {
+                                    "id": "640c2dd963a319ea671e367e",
+                                    "measure": "2 tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e372c",
+                                    "measure": "3 tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e365b",
+                                    "measure": "5 boneless"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e375e",
+                                    "measure": "1 teaspoon"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3771",
+                                    "measure": "1 cut into 1/2-inch cubes"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e367a",
+                                    "measure": "1 Head chopped"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3726",
+                                    "measure": "8-ounce sliced"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e373f",
+                                    "measure": "1 red"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e37ae",
+                                    "measure": "1 chopped"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36e3",
+                                    "measure": "3 cloves"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3750",
+                                    "measure": "1/2 teaspoon"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3794",
+                                    "measure": "1/2 cup"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e371f",
+                                    "measure": "1/2 cup"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36fc",
+                                    "measure": "1/2 cup"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3736",
+                                    "measure": "1 cup grated"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3675",
+                                    "measure": "16 ounces"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3738",
+                                    "measure": "chopped"
+                                }
+                            ]
+                        }
+                    ],
+                    "totalHits": 5,
+                    "hits": 4
+                }
             },
             "recipesByIdResponse": {
                 "type": "object",
@@ -2249,160 +2533,294 @@
                         }
                     }
                 },
-                "example": [
-                    {
-                        "_id": "640cd5ac2d9fecf12e8897fc",
-                        "title": "Spaghetti Bolognese",
-                        "category": "Beef",
-                        "area": "Italian",
-                        "instructions": "Put the onion and oil in a large pan and fry over a fairly high heat for 3-4 mins. Add the garlic and mince and fry until they both brown. Add the mushrooms and herbs, and cook for another couple of mins.\r\n\r\nStir in the tomatoes, beef stock, tomato ketchup or purée, Worcestershire sauce and seasoning. Bring to the boil, then reduce the heat, cover and simmer, stirring occasionally, for 30 mins.\r\n\r\nMeanwhile, cook the spaghetti in a large pan of boiling, salted water, according to packet instructions. Drain well, run hot water through it, put it back in the pan and add a dash of olive oil, if you like, then stir in the meat sauce. Serve in hot bowls and hand round Parmesan cheese, for sprinkling on top.",
-                        "description": "An Italian pasta dish made with spaghetti and a meat-based sauce, typically containing beef, tomatoes, onions, garlic, and herbs.",
-                        "thumb": "https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg",
-                        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/huqdxgwkvbhsfjqtexsm.jpg",
-                        "time": "45",
-                        "popularity": 2,
-                        "favorites": [
-                            "640cd5ac2d9fecf12e8897ee",
-                            "640cd5ac2d9fecf12e8897ef",
-                            "64135631f9ab2e3d387201b9",
-                            "641970802264c318da9ac920",
-                            "6419fc19eefa4b0ab8eaa5e8",
-                            "6418a645e05e5b3d5b47ae8d",
-                            "641ab80cdf4a1f25b1611694"
-                        ],
-                        "likes": [
-                            "64133d202bf7d7dccd4f9fd5",
-                            "641807a63c1d9f12cba908c8"
-                        ],
-                        "youtube": "https://www.youtube.com/watch?v=-gF8d-fitkU",
-                        "tags": [
-                            "Pasta",
-                            "Meat"
-                        ],
-                        "createdAt": "2023-03-11T19:25:33.240Z",
-                        "updatedAt": "2023-03-23T10:28:36.572Z",
-                        "ingredients": [
-                            {
-                                "id": "640c2dd963a319ea671e372e",
-                                "measure": "2"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e372c",
-                                "measure": "1tbsp"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e36e3",
-                                "measure": "1 clove"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e370f",
-                                "measure": "500g"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e3726",
-                                "measure": "90g"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e36c4",
-                                "measure": "1tsp"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e377f",
-                                "measure": "400g can"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e36ff",
-                                "measure": "300ml"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e377e",
-                                "measure": "1tbsp"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e3798",
-                                "measure": "1tbsp"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e376e",
-                                "measure": "350g"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e3735",
-                                "measure": "Topping"
-                            }
-                        ]
-                    },
-                    {
-                        "_id": "640cd5ac2d9fecf12e8897ee",
-                        "title": "Bakewell tart",
-                        "category": "Dessert",
-                        "area": "British",
-                        "instructions": "To make the pastry, measure the flour into a bowl and rub in the butter with your fingertips until the mixture resembles fine breadcrumbs. Add the water, mixing to form a soft dough.\r\nRoll out the dough on a lightly floured work surface and use to line a 20cm/8in flan tin. Leave in the fridge to chill for 30 minutes.\r\nPreheat the oven to 200C/400F/Gas 6 (180C fan).\r\nLine the pastry case with foil and fill with baking beans. Bake blind for about 15 minutes, then remove the beans and foil and cook for a further five minutes to dry out the base.\r\nFor the filing, spread the base of the flan generously with raspberry jam.\r\nMelt the butter in a pan, take off the heat and then stir in the sugar. Add ground almonds, egg and almond extract. Pour into the flan tin and sprinkle over the flaked almonds.\r\nBake for about 35 minutes. If the almonds seem to be browning too quickly, cover the tart loosely with foil to prevent them burning.",
-                        "description": "A British dessert consisting of a shortcrust pastry shell filled with raspberry jam, frangipane, and topped with almonds.",
-                        "thumb": "https://www.themealdb.com/images/media/meals/wyrqqq1468233628.jpg",
-                        "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/lygbfa7j94dgegmvnpas.jpg",
-                        "time": "85",
-                        "popularity": 1,
-                        "favorites": [
-                            "640e10b12752a54004e7b2bc",
-                            "6411fef75848f7534c62c591",
-                            "64136b81f9ab2e3d387206df"
-                        ],
-                        "likes": [
-                            "640ad9d808527273c5cd789c"
-                        ],
-                        "youtube": "https://www.youtube.com/watch?v=1ahpSTf_Pvk",
-                        "tags": [
-                            "Tart",
-                            "Baking",
-                            "Alcoholic"
-                        ],
-                        "createdAt": "2023-03-11T19:25:33.239Z",
-                        "updatedAt": "2023-03-22T11:38:07.552Z",
-                        "ingredients": [
-                            {
-                                "id": "640c2dd963a319ea671e3743",
-                                "measure": "175g/6oz"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e369a",
-                                "measure": "75g/2½oz"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e36ad",
-                                "measure": "2-3 tbsp"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e3749",
-                                "measure": "1 tbsp"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e367e",
-                                "measure": "125g/4½oz"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e3687",
-                                "measure": "125g/4½oz"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e36f6",
-                                "measure": "125g/4½oz"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e36da",
-                                "measure": "1"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e3861",
-                                "measure": "½ tsp"
-                            },
-                            {
-                                "id": "640c2dd963a319ea671e36d5",
-                                "measure": "50g/1¾oz"
-                            }
-                        ]
-                    }
-                ]
+                "example": {
+                    "results": [
+                        {
+                            "_id": "640cd5ac2d9fecf12e8897f2",
+                            "title": "Honey Teriyaki Salmon",
+                            "category": "Seafood",
+                            "area": "Japanese",
+                            "instructions": "Mix all the ingredients in the Honey Teriyaki Glaze together. Whisk to blend well. Combine the salmon and the Glaze together.\r\n\r\nHeat up a skillet on medium-low heat. Add the oil, Pan-fry the salmon on both sides until it’s completely cooked inside and the glaze thickens.\r\n\r\nGarnish with sesame and serve immediately.",
+                            "description": "A Japanese-inspired dish made with salmon fillets, teriyaki sauce, honey, and sesame seeds.",
+                            "thumb": "https://www.themealdb.com/images/media/meals/xxyupu1468262513.jpg",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560401/yspi0frormix0zwglhos.jpg",
+                            "time": "25",
+                            "popularity": 0,
+                            "favorites": [
+                                "642ff99b6885e6eb80579a5a"
+                            ],
+                            "likes": [],
+                            "youtube": "https://www.youtube.com/watch?v=4MpYuaJsvRw",
+                            "tags": [
+                                "Fish",
+                                "Breakfast",
+                                "DateNight"
+                            ],
+                            "createdAt": "2023-03-11T19:25:33.240Z",
+                            "updatedAt": "2023-03-22T11:58:16.672Z",
+                            "ingredients": [
+                                {
+                                    "id": "640c2dd963a319ea671e365c",
+                                    "measure": "1 lb"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e372c",
+                                    "measure": "1 tablespoon"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e376c",
+                                    "measure": "2 tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e375c",
+                                    "measure": "2 tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3764",
+                                    "measure": "4 tablespoons"
+                                }
+                            ]
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e8897f5",
+                            "title": "Mediterranean Pasta Salad",
+                            "category": "Seafood",
+                            "area": "Italian",
+                            "instructions": "Bring a large saucepan of salted water to the boil\r\nAdd the pasta, stir once and cook for about 10 minutes or as directed on the packet.\r\nMeanwhile, wash the tomatoes and cut into quarters. Slice the olives. Wash the basil.\r\nPut the tomatoes into a salad bowl and tear the basil leaves over them. Add a tablespoon of olive oil and mix.\r\nWhen the pasta is ready, drain into a colander and run cold water over it to cool it quickly.\r\nToss the pasta into the salad bowl with the tomatoes and basil.\r\nAdd the sliced olives, drained mozzarella balls, and chunks of tuna. Mix well and let the salad rest for at least half an hour to allow the flavours to mingle.\r\nSprinkle the pasta with a generous grind of black pepper and drizzle with the remaining olive oil just before serving.",
+                            "description": "A salad made with pasta, vegetables (such as tomatoes, cucumbers, and olives), feta cheese, and a dressing made with olive oil and lemon juice.",
+                            "thumb": "https://www.themealdb.com/images/media/meals/wvqpwt1468339226.jpg",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560402/mwtf7uqrnsxvlpjqtslc.jpg",
+                            "time": "27",
+                            "popularity": 1,
+                            "favorites": [
+                                "6418d54b63d5b7b1e97c6359",
+                                "642ff99b6885e6eb80579a5a"
+                            ],
+                            "likes": [
+                                "6418d54b63d5b7b1e97c6359"
+                            ],
+                            "youtube": "https://www.youtube.com/watch?v=e52IL8zYmaE",
+                            "tags": [
+                                "Pasta",
+                                "Baking"
+                            ],
+                            "createdAt": "2023-03-11T19:25:33.240Z",
+                            "updatedAt": "2023-03-22T11:58:24.610Z",
+                            "ingredients": [
+                                {
+                                    "id": "640c2dd963a319ea671e3724",
+                                    "measure": "200 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3663",
+                                    "measure": "250 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36dd",
+                                    "measure": "1  bunch"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36cf",
+                                    "measure": "350 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36cd",
+                                    "measure": "3  tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36f3",
+                                    "measure": "40 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3781",
+                                    "measure": "200 g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e375e",
+                                    "measure": "to taste"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e373f",
+                                    "measure": "to taste"
+                                }
+                            ]
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e8897f8",
+                            "title": "Irish stew",
+                            "category": "Beef",
+                            "area": "Irish",
+                            "instructions": "Heat the oven to 180C/350F/gas mark 4. Drain and rinse the soaked wheat, put it in a medium pan with lots of water, bring to a boil and simmer for an hour, until cooked. Drain and set aside.\r\n\r\nSeason the lamb with a teaspoon of salt and some black pepper. Put one tablespoon of oil in a large, deep sauté pan for which you have a lid; place on a medium-high heat. Add some of the lamb – don't overcrowd the pan – and sear for four minutes on all sides. Transfer to a bowl, and repeat with the remaining lamb, adding oil as needed.\r\n\r\nLower the heat to medium and add a tablespoon of oil to the pan. Add the shallots and fry for four minutes, until caramelised. Tip these into the lamb bowl, and repeat with the remaining vegetables until they are all nice and brown, adding more oil as you need it.\r\n\r\nOnce all the vegetables are seared and removed from the pan, add the wine along with the sugar, herbs, a teaspoon of salt and a good grind of black pepper. Boil on a high heat for about three minutes.\r\n\r\nTip the lamb, vegetables and whole wheat back into the pot, and add the stock. Cover and boil for five minutes, then transfer to the oven for an hour and a half.\r\n\r\nRemove the stew from the oven and check the liquid; if there is a lot, remove the lid and boil for a few minutes.",
+                            "description": "A traditional Irish dish made with lamb, potatoes, carrots, onions, and herbs, cooked in a broth or gravy.",
+                            "thumb": "https://www.themealdb.com/images/media/meals/sxxpst1468569714.jpg",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560408/kknfjaqupiqhufj5kspx.jpg",
+                            "time": "160",
+                            "popularity": 0,
+                            "favorites": [
+                                "641ab80cdf4a1f25b1611694",
+                                "642ff99b6885e6eb80579a5a"
+                            ],
+                            "likes": [],
+                            "youtube": "https://www.youtube.com/watch?v=kYH2qJXnSMo",
+                            "tags": [
+                                "Stew",
+                                "Meat"
+                            ],
+                            "createdAt": "2023-03-11T19:25:33.240Z",
+                            "updatedAt": "2023-03-23T10:28:47.062Z",
+                            "ingredients": [
+                                {
+                                    "id": "640c2dd963a319ea671e3796",
+                                    "measure": "300g soaked overnight in water"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e370c",
+                                    "measure": "2kg cut into 3cm cubes"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e372c",
+                                    "measure": "120ml"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3765",
+                                    "measure": "24 Skinned"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3684",
+                                    "measure": "4 large"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3784",
+                                    "measure": "2"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3689",
+                                    "measure": "1"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e368d",
+                                    "measure": "350g"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3794",
+                                    "measure": "150ml"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3687",
+                                    "measure": "1 tsp"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36de",
+                                    "measure": "4 sprigs"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3731",
+                                    "measure": "4 sprigs"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3696",
+                                    "measure": "450ml"
+                                }
+                            ]
+                        },
+                        {
+                            "_id": "640cd5ac2d9fecf12e889807",
+                            "title": "Chicken Alfredo Primavera",
+                            "category": "Chicken",
+                            "area": "Italian",
+                            "instructions": "Heat 1 tablespoon of butter and 2 tablespoons of olive oil in a large skillet over medium-high heat. Season both sides of each chicken breast with seasoned salt and a pinch of pepper. Add the chicken to the skillet and cook for 5-7 minutes on each side, or until cooked through.  While the chicken is cooking, bring a large pot of water to a boil. Season the boiling water with a few generous pinches of kosher salt. Add the pasta and give it a stir. Cook, stirring occasionally, until al dente, about 12 minutes. Reserve 1/2 cup of  pasta water before draining the pasta.  Remove the chicken from the pan and transfer it to a cutting board; allow it to rest. Turn the heat down to medium and dd the remaining 1 tablespoon of butter and olive oil to the same pan you used to cook the chicken. Add the veggies (minus the garlic) and red pepper flakes to the pan and stir to coat with the oil and butter (refrain from seasoning with salt until the veggies are finished browning). Cook, stirring often, until the veggies are tender, about 5 minutes. Add the garlic and a generous pinch of salt and pepper to the pan and cook for 1 minute.  Deglaze the pan with the white wine. Continue to cook until the wine has reduced by half, about 3 minutes. Stir in the milk, heavy cream, and reserved pasta water. Bring the mixture to a gentle boil and allow to simmer and reduce for 2-3 minutes. Turn off the heat and add the Parmesan cheese and cooked pasta. Season with salt and pepper to taste. Garnish with Parmesan cheese and chopped parsley, if desired. ",
+                            "description": "A creamy and satisfying pasta dish made with chicken, vegetables, and Alfredo sauce.",
+                            "thumb": "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg",
+                            "preview": "https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560402/anj8pdqnhdqoxmh0kgnm.jpg",
+                            "time": "40",
+                            "popularity": 0,
+                            "favorites": [
+                                "642ff99b6885e6eb80579a5a"
+                            ],
+                            "likes": [],
+                            "youtube": "https://www.youtube.com/watch?v=qCIbq8HywpQ",
+                            "tags": [
+                                "Pasta",
+                                "Meat",
+                                "Dairy"
+                            ],
+                            "createdAt": "2023-03-11T19:25:33.240Z",
+                            "updatedAt": "2023-03-20T12:14:40.854Z",
+                            "ingredients": [
+                                {
+                                    "id": "640c2dd963a319ea671e367e",
+                                    "measure": "2 tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e372c",
+                                    "measure": "3 tablespoons"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e365b",
+                                    "measure": "5 boneless"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e375e",
+                                    "measure": "1 teaspoon"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3771",
+                                    "measure": "1 cut into 1/2-inch cubes"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e367a",
+                                    "measure": "1 Head chopped"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3726",
+                                    "measure": "8-ounce sliced"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e373f",
+                                    "measure": "1 red"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e37ae",
+                                    "measure": "1 chopped"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36e3",
+                                    "measure": "3 cloves"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3750",
+                                    "measure": "1/2 teaspoon"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3794",
+                                    "measure": "1/2 cup"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e371f",
+                                    "measure": "1/2 cup"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e36fc",
+                                    "measure": "1/2 cup"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3736",
+                                    "measure": "1 cup grated"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3675",
+                                    "measure": "16 ounces"
+                                },
+                                {
+                                    "id": "640c2dd963a319ea671e3738",
+                                    "measure": "chopped"
+                                }
+                            ]
+                        }
+                    ],
+                    "totalHits": 5,
+                    "hits": 4
+                }
             },
             "SubscribeRequest": {
                 "type": "object",
