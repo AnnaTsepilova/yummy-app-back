@@ -14,9 +14,7 @@ const userSchema = Schema({
     required: [true, 'Email is required'],
     unique: true,
   },
-  shopingList: {
-    type: Array
-  },
+  shopingList: [{ ttl: String, thb: String, id: String, measure: String, recipesId: Array }],
   avatar: {
     type: String,
   },

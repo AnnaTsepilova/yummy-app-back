@@ -11,10 +11,16 @@ const addItemInList = async (req, res) => {
     const user = await User.findById(id);
     const ingrId = await Ingredients.findOne({ _id: ingrName }).select({ _id: 1 });
     const ingr = await Ingredients.findOne({ _id: ingrName }).select({ ttl: 1, thb: 1 });
+    const recipesId = await user.shopingList.filter(item => item.id.toString() === ingrName).map(item => item.recipesId.toString());
+    const check = recipesId.filter(item => item.includes(req.query.recipeId));
+    if (check.length === 0) {
+        recipesId.push(req.query.recipeId)
+    }
     const ingrToShoppingList = {
         ttl: ingr.ttl,
         thb: ingr.thb,
         id: ingrId._id,
+        recipesId,
         measure: ingrCount
     }
     const messureName = ingrCount.split(' ')[1];
@@ -23,11 +29,11 @@ const addItemInList = async (req, res) => {
     if (checkIds.length > 0 && messure.length > 0) {
         const messureCount = parseInt(ingrCount.split(' ')[0]);
         const messureItem = messure.join('').split(' ');
-        console.log(messureItem[1])
         const ingrToShoppingList = {
             ttl: ingr.ttl,
             thb: ingr.thb,
             id: ingrId._id,
+            recipesId,
             measure: !messureItem[1] ? parseInt(messureItem[0]) + messureCount + '' : parseInt(messureItem[0]) + messureCount + ' ' + messureItem[1]
 
         }
