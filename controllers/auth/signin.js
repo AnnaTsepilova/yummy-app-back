@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Session = require("../../models/session");
 const { SECRET_KEY } = process.env;
-
 const signin = async (req, res) => {
   const { email, password } = req.body;
 
@@ -20,9 +19,9 @@ const signin = async (req, res) => {
   const newSession = await Session.create({
     uid: user._id
   })
+  console.log(user);
   const accessToken = jwt.sign({ id: user._id, sid: newSession._id }, SECRET_KEY, { expiresIn: "100h" });
   const refreshToken = jwt.sign({ id: user._id, sid: newSession._id }, SECRET_KEY, { expiresIn: "30d" });
-
   res.json({
     accessToken,
     refreshToken,
@@ -30,6 +29,8 @@ const signin = async (req, res) => {
     user: {
       id: user._id,
       email: user.email,
+      name: user.name,
+      avatarURL: user.avatar
     }
   });
 }

@@ -1095,6 +1095,16 @@
                             "type": "string",
                             "description": "User's email",
                             "format": "email"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "User's name",
+                            "example": "Ivan"
+                        },
+                        "avatarURL": {
+                            "type": "string",
+                            "description": "User's avatar",
+                            "example": "https://s.gravatar.com/avatar/7131fd37217e2ae1e3b20921f140fd86?s=100&r=x&d=retro"
                         }
                     }
                 },
@@ -1104,7 +1114,9 @@
                     "sid": "642d5a09012f6d655ccb61cb",
                     "user": {
                         "id": "642ebdb026f983e8cf4dae2b",
-                        "email": "1@gmail.com"
+                        "email": "1@gmail.com",
+                        "name": "Ivan",
+                        "avatarURL": "https://s.gravatar.com/avatar/7131fd37217e2ae1e3b20921f140fd86?s=100&r=x&d=retro"
                     }
                 }
             },
