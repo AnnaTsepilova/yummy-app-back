@@ -752,6 +752,10 @@
                     "401": {
                         "description": "Unauthorized",
                         "content": {}
+                    },
+                    "404": {
+                        "description": "id not found",
+                        "content": {}
                     }
                 }
             }
