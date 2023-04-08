@@ -726,17 +726,18 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "shoppingListId"
+                        "name": "shoppingListId",
+                        "example": "640c2dd963a319ea671e365b"
                     },
                     {
                         "in": "query",
                         "name": "measure",
-                        "example": "150 lm"
+                        "example": "120 lm"
                     },
                     {
                         "in": "query",
                         "name": "recipeId",
-                        "example": "640cd5ac2d9fecf12e8897f6"
+                        "example": "640cd5ac2d9fecf12e8897f3"
                     }
                 ],
                 "security": [
