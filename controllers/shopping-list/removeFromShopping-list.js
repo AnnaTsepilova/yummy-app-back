@@ -13,7 +13,7 @@ const removeItemFromList = async (req, res) => {
             throw new NotFound(`id ${shoppingListId} not found`);
         }
         const shoppingList = await user.shopingList.filter(item => item.recipesId.includes(recipeId));
-        const shopingListIndex = await shoppingList.findIndex(item => item.measure === req.query.measure);
+        const shopingListIndex = await shoppingList.findIndex(item => item.id.toString() === shoppingListId && item.measure === req.query.measure);
         await shoppingList.splice(shopingListIndex, 1)
         await User.findOneAndUpdate({ _id: id }, { shopingList: shoppingList }, { new: true })
         return res.status(200).json({ message: "success" });
