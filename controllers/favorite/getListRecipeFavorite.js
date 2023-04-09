@@ -10,7 +10,7 @@ const getListRecipeFavorite = async (req, res) => {
   } = req.query;
   if (req.query.all === 'true') {
     const results = await Recipe.find({ favorites: req.user._id })
-    return res.status(200).json(results);
+    return res.status(200).json({ results });
   }
   limit = parseInt(limit) > limitNumber ? limitNumber : parseInt(limit);
   skip = parseInt(page) === 1 ? 0 : parseInt(page) * limit - limitNumber;
