@@ -6,7 +6,6 @@ const addRecipe = async (req, res) => {
     const { id } = req.user;
 
     const { title, description, category, cockingTime, ingredients, preparation } = req.body;
-    console.log(req.body.recipeImage);
     if (!title && !description && !category && !cockingTime && !ingredients && !preparation) {
         throw new BadRequest('Need body {title,description,category,cockingTime,ingredients[{id:"messure"}],preparation}')
     }
