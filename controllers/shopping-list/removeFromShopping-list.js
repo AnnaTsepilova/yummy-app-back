@@ -15,8 +15,8 @@ const removeItemFromList = async (req, res) => {
         const shoppingList = await user.shopingList.filter(item => item.recipesId.includes(recipeId));
         const shopingListIndex = await shoppingList.findIndex(item => item.id.toString() === shoppingListId && item.measure === req.query.measure);
         await shoppingList.splice(shopingListIndex, 1)
-        await User.findOneAndUpdate({ _id: id }, { shopingList: shoppingList }, { new: true })
-        return res.status(200).json({ message: "success" });
+        const removedShopingList = await User.findOneAndUpdate({ _id: id }, { shopingList: shoppingList }, { new: true }).select({ shopingList: 1 })
+        return res.status(200).json(removedShopingList);
 
 
     }
@@ -25,7 +25,7 @@ const removeItemFromList = async (req, res) => {
         throw new NotFound(`id ${shoppingListId} not found`);
     }
     await user.shopingList.splice(findShopingListIndex, 1);
-    await User.findOneAndUpdate({ _id: id }, { shopingList: user.shopingList }, { new: true })
-    return res.status(200).json({ message: "success" });
+    const removedShopingList = await User.findOneAndUpdate({ _id: id }, { shopingList: user.shopingList }, { new: true }).select({ shopingList: 1 })
+    return res.status(200).json(removedShopingList);
 }
 module.exports = removeItemFromList;
