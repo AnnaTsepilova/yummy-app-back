@@ -11,23 +11,25 @@ const searchRecipe = async (req, res) => {
     limit = parseInt(limit) > limitNumber ? limitNumber : parseInt(limit);
     skip = parseInt(page) === 1 ? 0 : parseInt(page) * limit - limitNumber;
     if (req.query.title) {
-        const pagination = await Recipe.find({ title: { $regex: req.query.title, $options: "i" } }).select({ title: 1, preview: 1 });
-        const results = await Recipe.find({ title: { $regex: req.query.title, $options: "i" } }).select({ title: 1, preview: 1 }).skip(skip).limit(limitNumber);
-        const totalHits = pagination.length;
+        const regexTitle = new RegExp(req.query.title, "i");
+        const countPromise = Recipe.countDocuments({ title: regexTitle });
+        const resultsPromise = Recipe.find({ title: regexTitle }, { title: 1, preview: 1 })
+            .skip(skip)
+            .limit(limitNumber)
+            .lean()
+            .exec();
+        const [totalHits, results] = await Promise.all([countPromise, resultsPromise]);
         const hits = results.length;
         return res.status(200).json({ results, totalHits, hits });
     }
-    const ingredient = await Ingredients.findOne({ ttl: { $regex: req.query.ingredient, $options: "i" } }).select({ _id: 1 });
-    if (!ingredient) {
-        throw new NotFound(`ingridient ${req.query.ingredient} not found`);
-    }
-    const pagination = await Recipe.find({
-        ingredients: { $elemMatch: { id: ingredient._id } },
-    })
-    const results = await Recipe.find({
-        ingredients: { $elemMatch: { id: ingredient._id } },
-    }).select({ title: 1, preview: 1 }).skip(skip).limit(limitNumber);
-    const totalHits = pagination.length;
+    const regexTitle = new RegExp(req.query.ingredient, "i");
+    const countPromise = Recipe.countDocuments({ title: regexTitle });
+    const resultsPromise = Recipe.find({ title: regexTitle }, { title: 1, preview: 1 })
+        .skip(skip)
+        .limit(limitNumber)
+        .lean()
+        .exec();
+    const [totalHits, results] = await Promise.all([countPromise, resultsPromise]);
     const hits = results.length;
     return res.status(200).json({ results, totalHits, hits });
 }
