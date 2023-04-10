@@ -4,7 +4,9 @@ const Recipe = require('../../models/recipe');
 
 const addRecipe = async (req, res) => {
     const { id } = req.user;
+
     const { title, description, category, cockingTime, ingredients, preparation } = req.body;
+    console.log(req.body.recipeImage);
     if (!title && !description && !category && !cockingTime && !ingredients && !preparation) {
         throw new BadRequest('Need body {title,description,category,cockingTime,ingredients[{id:"messure"}],preparation}')
     }
@@ -24,6 +26,7 @@ const addRecipe = async (req, res) => {
     const newRecipe = {
         title,
         category,
+        preview: req.body.recipeImage ? req.body.recipeImage : null,
         description,
         ingredients: ingredientsArray,
         time: cockingTime,
@@ -58,9 +61,13 @@ const getUserRecipe = async (req, res) => {
     const hits = results.length;
     return res.status(200).json({ results, totalHits, hits });
 }
-
+const recipeImage = (req, res) => {
+    const response = req.file.path;
+    return res.status(200).json({ response });
+}
 module.exports = {
     addRecipe,
     removeRecipe,
-    getUserRecipe
+    getUserRecipe,
+    recipeImage
 }
