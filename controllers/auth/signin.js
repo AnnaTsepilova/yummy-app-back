@@ -19,7 +19,7 @@ const signin = async (req, res) => {
   const newSession = await Session.create({
     uid: user._id
   })
-  const accessToken = jwt.sign({ id: user._id, sid: newSession._id }, SECRET_KEY, { expiresIn: "100h" });
+  const accessToken = jwt.sign({ id: user._id, sid: newSession._id }, SECRET_KEY, { expiresIn: "1h" });
   const refreshToken = jwt.sign({ id: user._id, sid: newSession._id }, SECRET_KEY, { expiresIn: "30d" });
   res.json({
     accessToken,
