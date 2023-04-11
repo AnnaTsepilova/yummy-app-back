@@ -15,7 +15,8 @@ const addItemInList = async (req, res) => {
             shoppingList.recipesId.push(req.query.recipeId);
             await user.save();
         }
-        return res.status(200).json(user.shopingList);
+        const shopingList = user.shopingList;
+        return res.status(200).json({ shopingList });
     } else {
         const ingr = await Ingredients.findById(ingrName).select({ ttl: 1, thb: 1 });
         const ingrToShoppingList = {

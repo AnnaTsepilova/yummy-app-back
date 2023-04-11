@@ -7,18 +7,10 @@ const removeItemFromList = async (req, res) => {
     const { recipeId } = req.query;
     const user = await User.findById(id);
     if (recipeId) {
-        const recipesId = await user.shopingList.filter(item => item.id.toString() === shoppingListId.toString()).flatMap(item => item.recipesId)
-        const recipesIdIndex = await recipesId.findIndex(item => item === recipeId);
-        if (recipesIdIndex === -1) {
-            throw new NotFound(`id ${shoppingListId} not found`);
-        }
-        const shoppingList = await user.shopingList.filter(item => item.recipesId.includes(recipeId));
-        const shopingListIndex = await shoppingList.findIndex(item => item.id.toString() === shoppingListId && item.measure === req.query.measure);
-        await shoppingList.splice(shopingListIndex, 1)
-        const removedShopingList = await User.findOneAndUpdate({ _id: id }, { shopingList: shoppingList }, { new: true }).select({ shopingList: 1 })
+        const shopingListIndex = await user.shopingList.findIndex(item => item.recipesId.includes(recipeId) && item.id.toString() === shoppingListId && item.measure === req.query.measure);
+        await user.shopingList.splice(shopingListIndex, 1)
+        const removedShopingList = await User.findOneAndUpdate({ _id: id }, { shopingList: user.shopingList }, { new: true }).select({ shopingList: 1 })
         return res.status(200).json(removedShopingList);
-
-
     }
     const findShopingListIndex = await user.shopingList.findIndex(item => item.id.toString() === shoppingListId.toString() && item.measure === req.query.measure);
     if (findShopingListIndex === -1) {
