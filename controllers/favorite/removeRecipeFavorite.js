@@ -16,4 +16,5 @@ const removeRecipeFavorite = async (req, res) => {
   }
   return res.status(200).json(updateRecipe);
 };
+
 module.exports = removeRecipeFavorite;

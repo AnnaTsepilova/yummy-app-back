@@ -1,5 +1,4 @@
 const Recipe = require("../../models/recipe");
-
 const { NotFound } = require("http-errors");
 
 const addRecipeFavorite = async (req, res) => {
@@ -17,4 +16,5 @@ const addRecipeFavorite = async (req, res) => {
   }
   return res.status(200).json(updateRecipe);
 };
+
 module.exports = addRecipeFavorite;

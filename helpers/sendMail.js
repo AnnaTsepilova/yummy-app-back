@@ -1,6 +1,5 @@
-const nodemailer = require('nodemailer');
-require('dotenv').config()
-
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
@@ -12,6 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = async mailOptions => await transporter.sendMail(mailOptions);
+const sendEmail = async (mailOptions) =>
+  await transporter.sendMail(mailOptions);
 
 module.exports = sendEmail;

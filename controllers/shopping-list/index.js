@@ -1,13 +1,9 @@
-
-const getShopingList = require('./getShopping-list');
-
-const addInShopingList = require('./addInShopping-list');
-
-const removeItemFromList = require('./removeFromShopping-list');
-
+const getShopingList = require("./getShopping-list");
+const addInShopingList = require("./addInShopping-list");
+const removeItemFromList = require("./removeFromShopping-list");
 
 module.exports = {
-    getShopingList,
-    addInShopingList,
-    removeItemFromList,
+  getShopingList,
+  addInShopingList,
+  removeItemFromList,
 };

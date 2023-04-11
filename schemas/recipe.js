@@ -1,4 +1,4 @@
-const Joi = require('joi');
+const Joi = require("joi");
 
 const recipeSchema = Joi.object({
   title: Joi.string(),
@@ -6,12 +6,11 @@ const recipeSchema = Joi.object({
   area: Joi.string(),
   instructions: Joi.string(),
   description: Joi.string(),
-  ingredients: Joi.array()
-    .items(
-      Joi.object({
-        measure: Joi.string(),
-      })
-    ),
+  ingredients: Joi.array().items(
+    Joi.object({
+      measure: Joi.string(),
+    })
+  ),
   thumb: Joi.string(),
 });
 
