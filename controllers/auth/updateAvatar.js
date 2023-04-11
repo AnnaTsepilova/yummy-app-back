@@ -1,12 +1,12 @@
-const { v4: uuidv4 } = require('uuid');
-const cloudinary = require('cloudinary').v2;
-const User = require('../../models/user');
-const path = require('path');
+const { v4: uuidv4 } = require("uuid");
+const cloudinary = require("cloudinary").v2;
+const User = require("../../models/user");
+const path = require("path");
 
 const updateAvatar = async (req, res) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ message: 'Please upload a file' });
+      return res.status(400).json({ message: "Please upload a file" });
     }
 
     const { _id } = req.user;
@@ -17,7 +17,7 @@ const updateAvatar = async (req, res) => {
 
     const result = await cloudinary.uploader.upload(req.file.path, {
       public_id: `avatars/${fileName}`,
-      folder: 'so-yummy',
+      folder: "so-yummy",
       use_filename: true,
       unique_filename: false,
       overwrite: true,
@@ -25,14 +25,18 @@ const updateAvatar = async (req, res) => {
 
     const avatarUrl = result.secure_url;
 
-    const user = await User.findOneAndUpdate({ _id }, { avatar: avatarUrl }, { new: true });
+    const user = await User.findOneAndUpdate(
+      { _id },
+      { avatar: avatarUrl },
+      { new: true }
+    );
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     res.json({
-      message: 'Avatar uploaded successfully',
+      message: "Avatar uploaded successfully",
       user: {
         name: user.name,
         email: user.email,
@@ -40,9 +44,8 @@ const updateAvatar = async (req, res) => {
       },
     });
   } catch (error) {
-
     console.error(error);
-    res.status(500).send('Something went wrong');
+    res.status(500).send("Something went wrong");
   }
 };
 

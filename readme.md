@@ -86,18 +86,7 @@ DELETE     | `/shopping-list/remove/:id`  | Delete ingredients
 | HTTP Method      | Endpoint          | Description |
 |---------------|----------------------|-------------|
 | POST | `/subscribe/`    | Subscribe for news        |
-
-
-
-
-### Unsubscribe endpoints
-
-
-| HTTP Method              | Endpoint           | Description |
-| ---------------------| ----------------------| ----------- |
-| GET | `/unsubscribe/:email` | Unsubscribe for news         |
-
-
+| GET | `/subscribe/remove/:email` | Unsubscribe for news         |
 
 
 ### Popular-recipe endpoints
