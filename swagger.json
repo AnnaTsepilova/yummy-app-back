@@ -46,10 +46,6 @@
             "description": "Subscribe endpoints"
         },
         {
-            "name": "Unsubscribe",
-            "description": "Unsubscribe endpoints"
-        },
-        {
             "name": "Popular-recipe",
             "description": "Popular-recipe endpoints"
         }
@@ -1014,10 +1010,10 @@
                 }
             }
         },
-        "/unsubscribe/{email}": {
+        "/subscribe/remove/{email}": {
             "get": {
                 "tags": [
-                    "Unsubscribe"
+                    "Subscribe"
                 ],
                 "summary": "unsubscribe for news",
                 "parameters": [
