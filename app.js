@@ -13,6 +13,7 @@ const subscribeRoutes = require("./routes/api/subscribe");
 const authRouter = require("./routes/api/auth");
 const shopingListRouter = require("./routes/api/shopping-list");
 const popularRecipeRoute = require("./routes/api/popular-recipe");
+const ownRecipesRouter = require('./routes/api/ownRecipes')
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -25,6 +26,7 @@ app.use("/api/popular-recipe", popularRecipeRoute);
 app.use("/api/favorite", favoriteRouter);
 app.use("/api/ingredients", ingredientsRouter);
 app.use("/api/recipes", recipesRouter);
+app.use('/api/ownRecipes', ownRecipesRouter)
 app.use("/api/subscribe", subscribeRoutes);
 app.use("/api/auth", authRouter);
 app.use("/api/shopping-list", shopingListRouter);

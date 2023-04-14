@@ -1,23 +1,13 @@
 const express = require("express");
 const ctrl = require("../../controllers/recipes");
 const { ctrlWrapper } = require("../../helpers");
-const { authenticate, imageUploader } = require("../../middleware");
+const { authenticate } = require("../../middleware");
 const router = express.Router();
 
 router.get("/category-list", authenticate, ctrlWrapper(ctrl.getCategoryList));
 router.get("/main-page", authenticate, ctrlWrapper(ctrl.getMainPage));
 router.get("/:category", authenticate, ctrlWrapper(ctrl.getRecipesByCategory));
 router.get("/id/:id", authenticate, ctrlWrapper(ctrl.getRecipeById));
-router.get("/", authenticate, ctrlWrapper(ctrl.getUserRecipe));
-router.get("/search/recipes", authenticate, ctrlWrapper(ctrl.searchRecipe));
-router.post("/add", authenticate, ctrlWrapper(ctrl.addRecipe));
-router.post(
-  "/add/recipeImage",
-  authenticate,
-  imageUploader.single("image"),
-  ctrlWrapper(ctrl.recipeImage)
-);
-
-router.delete("/remove/:id", authenticate, ctrlWrapper(ctrl.removeRecipe));
+router.get("/search/:flag", authenticate, ctrlWrapper(ctrl.searchRecipe));
 
 module.exports = router;
