@@ -4,11 +4,11 @@ const bcrypt = require("bcryptjs");
 
 const updateById = async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const { id } = req.user;
     const { name, email, password } = req.body;
     const newPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     const result = await User.findByIdAndUpdate(
-      userId,
+      id,
       { name, email, password: newPassword },
       { new: true }
     );

@@ -2,8 +2,8 @@ const User = require("../../models/user");
 const { NotFound } = require("http-errors");
 
 const getById = async (req, res) => {
-  const { userId } = req.params;
-  const result = await User.findById(userId);
+  const { id } = req.user;
+  const result = await User.findById(id);
   if (!result) {
     throw new NotFound("Not found");
   }
