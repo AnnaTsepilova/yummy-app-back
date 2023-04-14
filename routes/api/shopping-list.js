@@ -5,11 +5,11 @@ const { authenticate } = require("../../middleware");
 const router = express.Router();
 
 router.get("/", authenticate, ctrlWrapper(ctrl.getShopingList));
-router.post("/add", authenticate, ctrlWrapper(ctrl.addInShopingList));
+router.post("/", authenticate, ctrlWrapper(ctrl.addInShopingList));
 router.delete(
-  "/remove/:shoppingListId",
-  authenticate,
-  ctrlWrapper(ctrl.removeItemFromList)
+    "/:shoppingListId",
+    authenticate,
+    ctrlWrapper(ctrl.removeItemFromList)
 );
 
 module.exports = router;

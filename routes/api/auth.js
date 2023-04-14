@@ -2,9 +2,9 @@ const express = require("express");
 const ctrl = require("../../controllers/auth");
 const { ctrlWrapper } = require("../../helpers");
 const {
-  validateBody,
-  authenticate,
-  imageUploader,
+    validateBody,
+    authenticate,
+    imageUploader,
 } = require("../../middleware");
 const { signupSchema } = require("../../schemas/user");
 
@@ -18,20 +18,20 @@ router.post("/refresh", authenticate, ctrlWrapper(ctrl.refreshTokens));
 
 router.post("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
-router.get("/:userId", authenticate, ctrlWrapper(ctrl.getById));
+router.get("/", authenticate, ctrlWrapper(ctrl.getById));
 
 router.put(
-  "/:userId",
-  authenticate,
-  validateBody(signupSchema),
-  ctrlWrapper(ctrl.updateById)
+    "/",
+    authenticate,
+    validateBody(signupSchema),
+    ctrlWrapper(ctrl.updateById)
 );
 
 router.post(
-  "/avatars",
-  authenticate,
-  imageUploader.single("image"),
-  ctrlWrapper(ctrl.updateAvatar)
+    "/avatars",
+    authenticate,
+    imageUploader.single("image"),
+    ctrlWrapper(ctrl.updateAvatar)
 );
 
 module.exports = router;

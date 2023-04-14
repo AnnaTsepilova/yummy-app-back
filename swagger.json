@@ -30,6 +30,10 @@
             "description": "Recipes endpoints"
         },
         {
+            "name": "ownRecipes",
+            "description": "ownRecipes endpoints"
+        },
+        {
             "name": "Shoping-list",
             "description": "Shoping-list endpoints"
         },
@@ -200,18 +204,13 @@
                 }
             }
         },
-        "/auth/{userId}": {
+        "/auth/": {
             "get": {
                 "tags": [
                     "Auth"
                 ],
-                "summary": "Get user By Id",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userId"
-                    }
-                ],
+                "summary": "Get user info",
+                "parameters": [],
                 "security": [
                     {
                         "Bearer": []
@@ -238,13 +237,8 @@
                 "tags": [
                     "Auth"
                 ],
-                "summary": "update user by Id",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userId"
-                    }
-                ],
+                "summary": "update user info",
+                "parameters": [],
                 "security": [
                     {
                         "Bearer": []
@@ -450,10 +444,10 @@
                 }
             }
         },
-        "/recipes/": {
+        "/ownRecipes/": {
             "get": {
                 "tags": [
-                    "Recipes"
+                    "ownRecipes"
                 ],
                 "summary": "Get user's recipes",
                 "parameters": [
@@ -489,15 +483,148 @@
                         "content": {}
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "ownRecipes"
+                ],
+                "summary": "Add new Recipe",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "add new Recipe",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/addRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/addResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "missing fields in body"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ownRecipes"
+                ],
+                "summary": "remove recipe by id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id"
+                    }
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/deleteByIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    },
+                    "404": {
+                        "description": "recipe with id not found",
+                        "content": {}
+                    }
+                }
             }
         },
-        "/recipes/search/recipes": {
+        "/ownRecipes/recipeImage": {
+            "post": {
+                "tags": [
+                    "ownRecipes"
+                ],
+                "summary": "upload recipe's image",
+                "parameters": [],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "upload body",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UploadRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/addImageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "missing fields in body"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/recipes/search/{flag}": {
             "get": {
                 "tags": [
                     "Recipes"
                 ],
                 "summary": "Search recipe by title or ingredient",
                 "parameters": [
+                    {
+                        "in": "path",
+                        "name": "byTitle",
+                        "example": "Beef"
+                    },
+                    {
+                        "in": "path",
+                        "name": "byIngr",
+                        "example": "Chicken"
+                    },
                     {
                         "in": "query",
                         "name": "title",
@@ -553,133 +680,6 @@
                 }
             }
         },
-        "/recipes/add": {
-            "post": {
-                "tags": [
-                    "Recipes"
-                ],
-                "summary": "Add new Recipe",
-                "parameters": [],
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
-                "requestBody": {
-                    "description": "add new Recipe",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/addRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/addResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "missing fields in body"
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {}
-                    }
-                }
-            }
-        },
-        "/recipes/add/recipeImage": {
-            "post": {
-                "tags": [
-                    "Recipes"
-                ],
-                "summary": "upload recipe's image",
-                "parameters": [],
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
-                "requestBody": {
-                    "description": "upload body",
-                    "required": true,
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UploadRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/addImageResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "missing fields in body"
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {}
-                    }
-                }
-            }
-        },
-        "/recipes/remove/{id}": {
-            "delete": {
-                "tags": [
-                    "Recipes"
-                ],
-                "summary": "remove recipe by id",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id"
-                    }
-                ],
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/deleteByIdResponse"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {}
-                    },
-                    "404": {
-                        "description": "recipe with id not found",
-                        "content": {}
-                    }
-                }
-            }
-        },
         "/shopping-list/": {
             "get": {
                 "tags": [
@@ -708,9 +708,7 @@
                         "content": {}
                     }
                 }
-            }
-        },
-        "/shopping-list/add": {
+            },
             "post": {
                 "tags": [
                     "Shoping-list"
@@ -755,9 +753,7 @@
                         "content": {}
                     }
                 }
-            }
-        },
-        "/shopping-list/remove/{shoppingListId}": {
+            },
             "delete": {
                 "tags": [
                     "Shoping-list"
