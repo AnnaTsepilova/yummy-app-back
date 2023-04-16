@@ -16,6 +16,7 @@
 2. Install the dependencies;
 3. Run the following command: `npm run dev`;
 ----
+
 <div align="center">
 
 ### Auth Endpoints
@@ -26,7 +27,7 @@
 | POST        | `/auth/signin`   | User login        |
 | POST        | `/auth/logout`   | User logout       |
 | POST        | `/auth/refresh`  | User refresh      |
-| GET         | `/auth/`         | Get user info     |
+| GET         | `/auth/current`  | Get user info     |
 | PUT         | `/auth/`         | Update user info  |
 | POST        | `/auth/avatars`  | Upload a file     |
 
@@ -39,32 +40,38 @@
 | GET         | `/recipes/main-page`      | Get main page                     |
 | GET         | `/recipes/:category`      | Get recipes by category           |
 | GET         | `/recipes/id/:id`         | Get recipe by id                  |
-| GET         | `/recipes/`               | Get user's recipes                |
-| GET         | `/recipes/search/recipes` | Search recipe by title/ingredient |
-| POST        | `/recipes/add`            | Add new Recipe                    |
-| DELETE      | `/recipes/remove/:id`     | Remove recipe by id               |
+| GET         | `/recipes/search/:flag`   | Search recipe by title/ingredient |
 
-### Shoping-list endpoints      
+### Own Recipes Endpoints
 
-| HTTP Method | Endpoint                    | Description          |
-|-------------| ----------------------------| ---------------------|
-| GET         | `/shopping-list/`           | Get shopping-list    |
-| POST        | `/shopping-list/add`        | Add to shopping-list |
-| DELETE      | `/shopping-list/remove/:id` | Delete ingredients   |
+| HTTP Method | Endpoint                  | Description           |
+|-------------|---------------------------| ----------------------|
+| GET         | `/ownRecipes/`            | Get user's recipes    |
+| POST        | `/ownRecipes/`            | Add new Recipe        |
+| DELETE      | `/ownRecipes/`            | Remove recipe by id   |
+| POST        | `/ownRecipes/recipeImage` | Upload recipe's image |
+
+### Shopping-list endpoints      
+
+| HTTP Method | Endpoint          | Description          |
+|-------------| ------------------| ---------------------|
+| GET         | `/shopping-list/` | Get shopping-list    |
+| POST        | `/shopping-list/` | Add to shopping-list |
+| DELETE      | `/shopping-list/` | Delete ingredients   |
 
 ### Ingredients endpoints
 
-| HTTP Method | Endpoint              | Description               |
-|-------------|-----------------------| --------------------------|
-| GET         | `/ingredients/list`   | Get Ingredients list      |
-| GET         | `/ingredients/:title` | Get recipes by ingredient |
+| HTTP Method | Endpoint                       | Description               |
+|-------------|--------------------------------| --------------------------|
+| GET         | `/ingredients/list`            | Get Ingredients list      |
+| GET         | `/ingredients/:ingredientsTtl` | Get recipes by ingredient |
 
 ### Recipe's favorite endpoints
 
 | HTTP Method | Endpoint         | Description               |
 |-------------| -----------------| --------------------------|
 | GET         | `/favorite/list` | Get favorite recipe's     |
-| POST        | ` /favorite/:id` | Add recipe to favorite    |
+| POST        | `/favorite/:id`  | Add recipe to favorite    |
 | PUT         | `/favorite/:id`  | Update recipe in favorite |
 
 ### Subscribe endpoints
