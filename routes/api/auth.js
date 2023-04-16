@@ -18,7 +18,7 @@ router.post("/refresh", authenticate, ctrlWrapper(ctrl.refreshTokens));
 
 router.post("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
-router.get("/", authenticate, ctrlWrapper(ctrl.getById));
+router.get("/current", authenticate, ctrlWrapper(ctrl.current));
 
 router.put(
     "/",
