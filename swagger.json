@@ -204,7 +204,7 @@
                 }
             }
         },
-        "/auth/": {
+        "/auth/current": {
             "get": {
                 "tags": [
                     "Auth"
@@ -232,7 +232,9 @@
                         "content": {}
                     }
                 }
-            },
+            }
+        },
+        "/auth/": {
             "put": {
                 "tags": [
                     "Auth"
