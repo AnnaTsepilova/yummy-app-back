@@ -932,11 +932,11 @@
                     }
                 }
             },
-            "put": {
+            "delete": {
                 "tags": [
                     "Favorites"
                 ],
-                "summary": "update recipe in favorites",
+                "summary": "Delete recipe in favorites",
                 "parameters": [
                     {
                         "in": "path",
