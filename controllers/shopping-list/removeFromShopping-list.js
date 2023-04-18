@@ -7,21 +7,21 @@ const removeItemFromList = async (req, res) => {
   const { recipeId } = req.query;
   const user = await User.findById(id);
   if (recipeId) {
-    const shopingListIndex = await user.shopingList.findIndex(
+    const shopingListIndex = await user.shoppingList.findIndex(
       (item) =>
         item.recipesId.includes(recipeId) &&
         item.id.toString() === shoppingListId &&
         item.measure === req.query.measure
     );
-    await user.shopingList.splice(shopingListIndex, 1);
+    await user.shoppingList.splice(shopingListIndex, 1);
     const removedShopingList = await User.findOneAndUpdate(
       { _id: id },
-      { shopingList: user.shopingList },
+      { shoppingList: user.shoppingList },
       { new: true }
-    ).select({ shopingList: 1 });
+    ).select({ shoppingList: 1 });
     return res.status(200).json(removedShopingList);
   }
-  const findShopingListIndex = await user.shopingList.findIndex(
+  const findShopingListIndex = await user.shoppingList.findIndex(
     (item) =>
       item.id.toString() === shoppingListId &&
       item.measure.trimRight() === req.query.measure
@@ -30,12 +30,12 @@ const removeItemFromList = async (req, res) => {
   if (findShopingListIndex === -1) {
     throw new NotFound(`id ${shoppingListId} not found`);
   }
-  await user.shopingList.splice(findShopingListIndex, 1);
+  await user.shoppingList.splice(findShopingListIndex, 1);
   const removedShopingList = await User.findOneAndUpdate(
     { _id: id },
-    { shopingList: user.shopingList },
+    { shoppingList: user.shoppingList },
     { new: true }
-  ).select({ shopingList: 1 });
+  ).select({ shoppingList: 1 });
   return res.status(200).json(removedShopingList);
 };
 

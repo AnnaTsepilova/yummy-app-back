@@ -19,7 +19,7 @@ const updateById = async (req, res, next) => {
       id: result._id,
       name: result.name,
       email: result.email,
-      shopingList: result.shopingList,
+      shoppingList: result.shoppingList,
       createdAt: result.createdAt,
       updatedAt: result.updatedAt,
     };

@@ -17,7 +17,7 @@
     ],
     "servers": [
         {
-            "url": "https://y-3wt8.onrender.com/api"
+            "url": "http://localhost:3333/api"
         }
     ],
     "tags": [
