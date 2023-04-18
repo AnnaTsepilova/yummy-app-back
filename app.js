@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-const favoriteRouter = require("./routes/api/favorite");
+const favoritesRouter = require("./routes/api/favorites");
 const ingredientsRouter = require("./routes/api/ingredients");
 const recipesRouter = require("./routes/api/recipes");
 const subscribeRoutes = require("./routes/api/subscribe");
@@ -21,7 +21,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/favorites", favoriteRouter);
+app.use("/api/favorites", favoritesRouter);
 app.use("/api/ingredients", ingredientsRouter);
 app.use("/api/recipes", recipesRouter);
 app.use('/api/ownRecipes', ownRecipesRouter)
