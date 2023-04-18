@@ -40,7 +40,7 @@
 | GET         | `/recipes/main-page`      | Get main page                     |
 | GET         | `/recipes/:category`      | Get recipes by category           |
 | GET         | `/recipes/id/:id`         | Get recipe by id                  |
-| GET         | `/recipes/search`        | Search recipe by title/ingredient |
+| GET         | `/recipes/search`        | Search recipe by title or ingredient |
 | GET         | `/recipes/popular`       | Get popular recipes               |
 
 ### Own Recipes Endpoints
