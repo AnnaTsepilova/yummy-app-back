@@ -3,11 +3,11 @@ const Recipe = require("../../models/recipe");
 
 const searchRecipe = async (req, res) => {
     const limitNumber = 12;
-    const { byTitle } = req.params;
+    const { title } = req.query;
     let { page = 1, limit = limitNumber, skip = 0 } = req.query;
     limit = parseInt(limit) > limitNumber ? limitNumber : parseInt(limit);
     skip = parseInt(page) === 1 ? 0 : parseInt(page) * limit - limitNumber;
-    if (byTitle) {
+    if (title) {
         const regexTitle = new RegExp(req.query.title, "i");
         const countPromise = Recipe.countDocuments({ title: regexTitle });
         const resultsPromise = Recipe.find(
