@@ -861,7 +861,7 @@
                 "tags": [
                     "Favorites"
                 ],
-                "summary": "Get favorites recipes",
+                "summary": "Get favorite recipes",
                 "parameters": [
                     {
                         "in": "query",

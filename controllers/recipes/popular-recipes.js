@@ -1,7 +1,7 @@
 const Recipe = require("../../models/recipe");
 const { NotFound } = require("http-errors");
 
-const getPopularRecipe = async (req, res) => {
+const getPopularRecipes = async (req, res) => {
     const recipesSorted = await Recipe.find()
         .limit(4)
         .sort({ favorites: -1 });
@@ -15,4 +15,4 @@ const getPopularRecipe = async (req, res) => {
     return res.status(200).json(recipes);
 };
 
-module.exports = getPopularRecipe;
+module.exports = getPopularRecipes;
