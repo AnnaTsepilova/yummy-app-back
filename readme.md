@@ -40,7 +40,8 @@
 | GET         | `/recipes/main-page`      | Get main page                     |
 | GET         | `/recipes/:category`      | Get recipes by category           |
 | GET         | `/recipes/id/:id`         | Get recipe by id                  |
-| GET         | `/recipes/search/:flag`   | Search recipe by title/ingredient |
+| GET         | `/recipes/search`        | Search recipe by title/ingredient |
+| GET         | `/recipes/popular`       | Get popular recipes               |
 
 ### Own Recipes Endpoints
 
@@ -48,31 +49,31 @@
 |-------------|---------------------------| ----------------------|
 | GET         | `/ownRecipes/`            | Get user's recipes    |
 | POST        | `/ownRecipes/`            | Add new Recipe        |
-| DELETE      | `/ownRecipes/`            | Remove recipe by id   |
+| DELETE      | `/ownRecipes/:id`         | Remove recipe by id   |
 | POST        | `/ownRecipes/recipeImage` | Upload recipe's image |
 
-### Shopping-list endpoints      
+### Shopping-list endpoints
 
-| HTTP Method | Endpoint          | Description          |
-|-------------| ------------------| ---------------------|
-| GET         | `/shopping-list/` | Get shopping-list    |
-| POST        | `/shopping-list/` | Add to shopping-list |
-| DELETE      | `/shopping-list/` | Delete ingredients   |
+| HTTP Method | Endpoint                         | Description                           |
+|-------------| ---------------------------------| --------------------------------------|
+| GET         | `/shopping-list/`                | Get shopping-list                     |
+| POST        | `/shopping-list/`                | Add to shopping-list                  |
+| DELETE      | `/shopping-list/:shoppingListId` | Delete ingredients from shopping-list |
 
 ### Ingredients endpoints
 
 | HTTP Method | Endpoint                       | Description               |
 |-------------|--------------------------------| --------------------------|
 | GET         | `/ingredients/list`            | Get Ingredients list      |
-| GET         | `/ingredients/:ingredientsTtl` | Get recipes by ingredient |
+| GET         | `/ingredients/:ingredientTtl` | Get recipes by ingredient |
 
-### Recipe's favorite endpoints
+### Recipe's favorites endpoints
 
 | HTTP Method | Endpoint         | Description               |
 |-------------| -----------------| --------------------------|
-| GET         | `/favorite/list` | Get favorite recipe's     |
-| POST        | `/favorite/:id`  | Add recipe to favorite    |
-| PUT         | `/favorite/:id`  | Update recipe in favorite |
+| GET         | `/favorites/list` | Get favorite recipe's     |
+| POST        | `/favorites/:id`  | Add recipe to favorite    |
+| PUT         | `/favorites/:id`  | Update recipe in favorite |
 
 ### Subscribe endpoints
 
@@ -80,12 +81,6 @@
 |-------------|----------------------------|----------------------|
 | POST        | `/subscribe/`              | Subscribe for news   |
 | GET         | `/subscribe/remove/:email` | Unsubscribe for news |
-
-### Popular-recipe endpoints
-
-| HTTP Method | Endpoint           | Description         |
-|-------------|--------------------|---------------------|
-| GET         | `/popular-recipe/` | Get popular recipes |
 
 [![Swagger](https://res.cloudinary.com/dbcvume5y/image/upload/v1681079866/2023-04-10_013619_zh7eij.jpg)](https://y-3wt8.onrender.com/api-docs/)
 
