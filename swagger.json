@@ -42,16 +42,12 @@
             "description": "Ingredients endpoints"
         },
         {
-            "name": "Favorite",
-            "description": "Recipe's favorite endpoints"
+            "name": "Favorites",
+            "description": "Favorite recipes' endpoints"
         },
         {
             "name": "Subscribe",
             "description": "Subscribe endpoints"
-        },
-        {
-            "name": "Popular-recipe",
-            "description": "Popular-recipe endpoints"
         }
     ],
     "paths": {
@@ -527,7 +523,9 @@
                         "content": {}
                     }
                 }
-            },
+            }
+        },
+        "/ownRecipes/{id}": {
             "delete": {
                 "tags": [
                     "ownRecipes"
@@ -536,7 +534,8 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id"
+                        "name": "id",
+                        "example": "6426cc69bbfa55460b0ea034"
                     }
                 ],
                 "security": [
@@ -610,23 +609,13 @@
                 }
             }
         },
-        "/recipes/search/{flag}": {
+        "/recipes/search": {
             "get": {
                 "tags": [
                     "Recipes"
                 ],
                 "summary": "Search recipe by title or ingredient",
                 "parameters": [
-                    {
-                        "in": "path",
-                        "name": "byTitle",
-                        "example": "Beef"
-                    },
-                    {
-                        "in": "path",
-                        "name": "byIngr",
-                        "example": "Chicken"
-                    },
                     {
                         "in": "query",
                         "name": "title",
@@ -755,7 +744,9 @@
                         "content": {}
                     }
                 }
-            },
+            }
+        },
+        "/shopping-list/{shoppingListId}": {
             "delete": {
                 "tags": [
                     "Shoping-list"
@@ -838,7 +829,8 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "ingredientTtl"
+                        "name": "ingredientTtl",
+                        "example": "cucumber"
                     }
                 ],
                 "security": [
@@ -864,12 +856,12 @@
                 }
             }
         },
-        "/favorite/list": {
+        "/favorites/list": {
             "get": {
                 "tags": [
-                    "Favorite"
+                    "Favorites"
                 ],
-                "summary": "Get favorite recipe's",
+                "summary": "Get favorite recipes",
                 "parameters": [
                     {
                         "in": "query",
@@ -905,16 +897,17 @@
                 }
             }
         },
-        "/favorite/{id}": {
+        "/favorites/{id}": {
             "post": {
                 "tags": [
-                    "Favorite"
+                    "Favorites"
                 ],
-                "summary": "add recipe to favorite",
+                "summary": "add recipe to favorites",
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id"
+                        "name": "id",
+                        "example": "640cd5ac2d9fecf12e8897f2"
                     }
                 ],
                 "security": [
@@ -941,13 +934,14 @@
             },
             "put": {
                 "tags": [
-                    "Favorite"
+                    "Favorites"
                 ],
-                "summary": "update recipe in favorite",
+                "summary": "update recipe in favorites",
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "id"
+                        "name": "id",
+                        "example": "640cd5ac2d9fecf12e8897f2"
                     }
                 ],
                 "security": [
@@ -1037,10 +1031,10 @@
                 }
             }
         },
-        "/popular-recipe/": {
+        "/recipes/popular": {
             "get": {
                 "tags": [
-                    "Popular-recipe"
+                    "Recipes"
                 ],
                 "summary": "Get Popular recipes",
                 "parameters": [],
