@@ -34,14 +34,14 @@
 
 ### Recipes Endpoints
 
-| HTTP Method | Endpoint                  | Description                       |
-|-------------|---------------------------| ----------------------------------|
-| GET         | `/recipes/category-list`  | Get category list                 |
-| GET         | `/recipes/main-page`      | Get main page                     |
-| GET         | `/recipes/:category`      | Get recipes by category           |
-| GET         | `/recipes/id/:id`         | Get recipe by id                  |
-| GET         | `/recipes/search`        | Search recipe by title or ingredient |
-| GET         | `/recipes/popular`       | Get popular recipes               |
+| HTTP Method | Endpoint                  | Description                          |
+|-------------|---------------------------| -------------------------------------|
+| GET         | `/recipes/category-list`  | Get category list                    |
+| GET         | `/recipes/main-page`      | Get main page                        |
+| GET         | `/recipes/:category`      | Get recipes by category              |
+| GET         | `/recipes/id/:id`         | Get recipe by id                     |
+| GET         | `/recipes/search`         | Search recipe by title or ingredient |
+| GET         | `/recipes/popular`        | Get popular recipes                  |
 
 ### Own Recipes Endpoints
 
@@ -65,15 +65,15 @@
 | HTTP Method | Endpoint                       | Description               |
 |-------------|--------------------------------| --------------------------|
 | GET         | `/ingredients/list`            | Get Ingredients list      |
-| GET         | `/ingredients/:ingredientTtl` | Get recipes by ingredient |
+| GET         | `/ingredients/:ingredientTtl`  | Get recipes by ingredient |
 
 ### Recipe's favorites endpoints
 
-| HTTP Method | Endpoint         | Description               |
-|-------------| -----------------| --------------------------|
+| HTTP Method | Endpoint          | Description               |
+|-------------| ------------------| --------------------------|
 | GET         | `/favorites/list` | Get favorite recipe's     |
 | POST        | `/favorites/:id`  | Add recipe to favorite    |
-| PUT         | `/favorites/:id`  | Update recipe in favorite |
+| DELETE      | `/favorites/:id`  | Delete recipe in favorite |
 
 ### Subscribe endpoints
 
