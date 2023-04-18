@@ -3,10 +3,11 @@ const { NotFound } = require("http-errors");
 
 const removeRecipeFavorite = async (req, res) => {
   const { id } = req.params;
+  const userId = req.user._id;
 
   const updateRecipe = await Recipe.findOneAndUpdate(
-    { _id: id },
-    { $pull: { favorites: req.user._id } },
+    { _id: id, favorites: userId },
+    { $pull: { favorites: userId } },
     {
       new: true,
     }
