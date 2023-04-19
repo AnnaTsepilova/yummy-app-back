@@ -28,7 +28,7 @@
 | POST        | `/auth/logout`   | User logout       |
 | POST        | `/auth/refresh`  | User refresh      |
 | GET         | `/auth/current`  | Get user info     |
-| PUT         | `/auth/`         | Update user info  |
+| PUT         | `/auth`         | Update user info  |
 | POST        | `/auth/avatars`  | Upload a file     |
 
 
@@ -47,8 +47,8 @@
 
 | HTTP Method | Endpoint                  | Description           |
 |-------------|---------------------------| ----------------------|
-| GET         | `/ownRecipes/`            | Get user's recipes    |
-| POST        | `/ownRecipes/`            | Add new Recipe        |
+| GET         | `/ownRecipes`            | Get user's recipes    |
+| POST        | `/ownRecipes`            | Add new Recipe        |
 | DELETE      | `/ownRecipes/:id`         | Remove recipe by id   |
 | POST        | `/ownRecipes/recipeImage` | Upload recipe's image |
 
@@ -56,22 +56,22 @@
 
 | HTTP Method | Endpoint                         | Description                           |
 |-------------| ---------------------------------| --------------------------------------|
-| GET         | `/shopping-list/`                | Get shopping-list                     |
-| POST        | `/shopping-list/`                | Add to shopping-list                  |
+| GET         | `/shopping-list`                | Get shopping-list                     |
+| POST        | `/shopping-list`                | Add to shopping-list                  |
 | DELETE      | `/shopping-list/:shoppingListId` | Delete ingredients from shopping-list |
 
 ### Ingredients endpoints
 
 | HTTP Method | Endpoint                       | Description               |
 |-------------|--------------------------------| --------------------------|
-| GET         | `/ingredients/list`            | Get Ingredients list      |
+| GET         | `/ingredients`            | Get Ingredients list      |
 | GET         | `/ingredients/:ingredientTtl`  | Get recipes by ingredient |
 
 ### Recipe's favorites endpoints
 
 | HTTP Method | Endpoint          | Description               |
 |-------------| ------------------| --------------------------|
-| GET         | `/favorites/list` | Get favorite recipe's     |
+| GET         | `/favorites` | Get favorite recipe's     |
 | POST        | `/favorites/:id`  | Add recipe to favorite    |
 | DELETE      | `/favorites/:id`  | Delete recipe in favorite |
 
@@ -79,7 +79,7 @@
 
 | HTTP Method | Endpoint                   | Description          |
 |-------------|----------------------------|----------------------|
-| POST        | `/subscribe/`              | Subscribe for news   |
+| POST        | `/subscribe`              | Subscribe for news   |
 | GET         | `/subscribe/remove/:email` | Unsubscribe for news |
 
 [![Swagger](https://res.cloudinary.com/dbcvume5y/image/upload/v1681079866/2023-04-10_013619_zh7eij.jpg)](https://y-3wt8.onrender.com/api-docs/)
