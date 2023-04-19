@@ -790,7 +790,7 @@
                 }
             }
         },
-        "/ingredients/list": {
+        "/ingredients": {
             "get": {
                 "tags": [
                     "Ingredients"
@@ -856,7 +856,7 @@
                 }
             }
         },
-        "/favorites/list": {
+        "/favorites": {
             "get": {
                 "tags": [
                     "Favorites"
