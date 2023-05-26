@@ -79,8 +79,8 @@
 
 | HTTP Method | Endpoint                   | Description          |
 |-------------|----------------------------|----------------------|
-| POST        | `/subscribe`              | Subscribe for news   |
-| GET         | `/subscribe/remove/:email` | Unsubscribe for news |
+| POST        | `/subscribe`               | Subscribe for news   |
+| DELETE      | `/subscribe/:email`        | Unsubscribe for news |
 
 [![Swagger](https://res.cloudinary.com/dbcvume5y/image/upload/v1681079866/2023-04-10_013619_zh7eij.jpg)](https://y-3wt8.onrender.com/api-docs/)
 

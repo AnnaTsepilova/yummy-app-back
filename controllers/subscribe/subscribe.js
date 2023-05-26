@@ -9,10 +9,10 @@ const subscribe = async (req, res) => {
 
     const existingSubscriber = await Subscriber.findOne({ email });
     if (existingSubscriber) {
-      return res.status(400).send("Email already subscribed");
+      return res.status(400).json({ error: "Email already subscribed" });
     }
 
-    const unsubscribeUrl = `${BASE_URL}/api/subscribe/remove/${email}`;
+    const unsubscribeUrl = `${BASE_URL}/api/subscribe/${email}`;
 
     const mailOptions = {
       from: EMAIL_FROM,
@@ -38,10 +38,9 @@ const subscribe = async (req, res) => {
     });
     await subscriber.save();
 
-    res.send("Subscription successful");
+    return res.json({ message: "Subscription successful" });
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error subscribing");
+    return next(error);
   }
 };
 

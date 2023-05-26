@@ -948,8 +948,8 @@
         }
       }
     },
-    "/subscribe/remove/{email}": {
-      "get": {
+    "/subscribe/{email}": {
+      "delete": {
         "tags": ["Subscribe"],
         "summary": "unsubscribe for news",
         "parameters": [
