@@ -3,7 +3,7 @@ const { sendEmail } = require("../../helpers");
 const mongoose = require("mongoose");
 const { EMAIL_FROM, LETTER_IMG, BASE_URL } = process.env;
 
-const subscribe = async (req, res) => {
+const subscribe = async (req, res, next) => {
   try {
     const { email } = req.body;
 
