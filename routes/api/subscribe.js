@@ -7,6 +7,6 @@ const emailSchema = require("../../schemas/subscribe");
 const router = express.Router();
 
 router.post("/", validateBody(emailSchema), ctrlWrapper(ctrl.subscribe));
-router.get("/remove/:email", ctrlWrapper(ctrl.unsubscribe));
+router.delete("/:email", ctrlWrapper(ctrl.unsubscribe));
 
 module.exports = router;
